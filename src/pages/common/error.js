@@ -1,6 +1,6 @@
-/* eslint-disable import/prefer-default-export */
+/* eslint-disable */
 export const createError = (name, message) => {
-    const e = new Error(message);
-    e.name = name;
-    return e;
+  const e = new Error(message);
+  e.name = name;
+  return e;
 };
