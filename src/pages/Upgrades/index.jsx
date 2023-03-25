@@ -9,43 +9,6 @@ import { Card, ColumnText, Container, Price, TextContainer } from './styles';
 function Upgrades() {
   const [updrades, setUpdrades] = useState([]);
 
-  const response = [
-    {
-      title: 'Método Start',
-      price: 'R$49,90',
-      options: [
-        { label: 'Acesso a plaataforma' },
-        { label: 'Acesso a plaataforma' },
-        { label: 'Acesso a plaataforma' },
-        { label: 'Acesso a plaataforma' },
-      ],
-    },
-
-    {
-      title: 'Profissional',
-      offer: 'Melhor Oferta',
-      price: 'R$159,90',
-      options: [
-        { label: 'Acesso a plaataforma' },
-        { label: 'Acesso a plaataforma' },
-        { label: 'Acesso a plaataforma' },
-        { label: 'Acesso a plaataforma' },
-      ],
-    },
-
-    {
-      title: 'Ilimitado',
-      offer: 'Maior Vantagem',
-      price: 'R$359,90',
-      options: [
-        { label: 'Acesso a plaataforma' },
-        { label: 'Acesso a plaataforma' },
-        { label: 'Acesso a plaataforma' },
-        { label: 'Acesso a plaataforma' },
-      ],
-    },
-  ];
-
   useEffect(() => {
     const controller = new AbortController();
 
@@ -57,6 +20,7 @@ function Upgrades() {
           (plan) => (plan.options = plan.values.split(';'))
         );
 
+        response?.plans.reverse();
         setUpdrades(response?.plans);
       } catch (error) {
         // console.log(error);
@@ -82,7 +46,7 @@ function Upgrades() {
               </Row>
 
               <Price>
-                {item.price} <span>/mês</span>{' '}
+                {item.price},00 <span>/mês</span>{' '}
               </Price>
 
               <ColumnText>

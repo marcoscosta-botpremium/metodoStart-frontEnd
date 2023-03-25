@@ -52,6 +52,8 @@ const Operation = () => {
           }
         });
 
+        response?.scripts.reverse();
+
         setBots(response?.scripts);
       } catch (error) {
         // console.log(error);

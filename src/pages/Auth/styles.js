@@ -48,6 +48,7 @@ export const Left = styled.div`
 
   @media (max-width: ${breakPoint.mobileLg}) {
     width: 100%;
+    align-items: center;
   }
 `;
 

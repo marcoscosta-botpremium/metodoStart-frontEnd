@@ -16,36 +16,14 @@ const Tutorials = () => {
   const [tutorials, setTutorials] = useState([]);
   const [selectedVideo, setSelectedVideo] = useState({});
 
-  const response = [
-    {
-      title: 'Como operar',
-      link: 'https://vimeo.com/512569996',
-      description:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi iste aut dolorem animi quisquam at rem sequi odio molestias quaerat. Praesentium perspiciatis quod eaque quam illum exercitationem magnam totam fugiat!',
-    },
-
-    {
-      title: 'Fazendo operacoes',
-      link: '666532523',
-      description:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi iste aut dolorem animi quisquam at rem sequi odio molestias quaerat. Praesentium perspiciatis quod eaque quam illum exercitationem magnam totam fugiat!',
-    },
-
-    {
-      title: 'Aumentando os lucros',
-      link: '514917140',
-      description:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi iste aut dolorem animi quisquam at rem sequi odio molestias quaerat. Praesentium perspiciatis quod eaque quam illum exercitationem magnam totam fugiat!',
-    },
-  ];
-
   useEffect(() => {
     const controller = new AbortController();
 
     const getTutorials = async () => {
       try {
         const response = await api.getTutorials(controller);
-        console.log(response);
+
+        response.publications.reverse();
 
         setSelectedVideo(response?.publications[0]);
         setTutorials(response?.publications);

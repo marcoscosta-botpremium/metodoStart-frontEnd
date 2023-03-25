@@ -7,8 +7,7 @@ import {
   set as setStorage,
 } from './storage';
 
-// export const appid = '29823'
-export const appid = '35104';
+export const appid = '35973';
 
 export const AppConstants = Object.freeze({
   STORAGE_ACTIVE_TOKEN: 'activeToken',
