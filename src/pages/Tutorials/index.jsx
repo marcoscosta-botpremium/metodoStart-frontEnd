@@ -25,6 +25,8 @@ const Tutorials = () => {
 
         response.publications.reverse();
 
+        console.log(response.publications);
+
         setSelectedVideo(response?.publications[0]);
         setTutorials(response?.publications);
       } catch (error) {
@@ -52,12 +54,7 @@ const Tutorials = () => {
           )}
 
           <SubTitle>{selectedVideo.title}</SubTitle>
-          <Text>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident,
-            tenetur totam. Commodi nostrum eius laudantium, saepe expedita autem
-            non cumque minus ipsam voluptates! Ex, nemo quod sunt nobis
-            consequatur cupiditate.
-          </Text>
+          <Text>{selectedVideo.describe}</Text>
         </VideoContainer>
 
         <ListTutorials>
