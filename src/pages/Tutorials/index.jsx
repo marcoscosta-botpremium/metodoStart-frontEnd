@@ -24,9 +24,6 @@ const Tutorials = () => {
         const response = await api.getTutorials(controller);
 
         response.publications.reverse();
-
-        console.log(response.publications);
-
         setSelectedVideo(response?.publications[0]);
         setTutorials(response?.publications);
       } catch (error) {
@@ -41,6 +38,13 @@ const Tutorials = () => {
     };
   }, []);
 
+  useEffect(() => {
+    if (selectedVideo) {
+      const elementText = document.querySelector('#describe');
+      elementText.innerHTML = selectedVideo.describe;
+    }
+  }, [selectedVideo]);
+
   return (
     <Layout title="Aulas">
       <Container variants={variants.opacity} animate="visible" initial="hidden">
@@ -54,7 +58,7 @@ const Tutorials = () => {
           )}
 
           <SubTitle>{selectedVideo.title}</SubTitle>
-          <Text>{selectedVideo.describe}</Text>
+          <Text id="describe"></Text>
         </VideoContainer>
 
         <ListTutorials>

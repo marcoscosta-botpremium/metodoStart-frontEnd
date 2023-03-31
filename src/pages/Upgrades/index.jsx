@@ -21,6 +21,7 @@ function Upgrades() {
         );
 
         response?.plans.reverse();
+
         setUpdrades(response?.plans);
       } catch (error) {
         // console.log(error);
@@ -58,7 +59,9 @@ function Upgrades() {
                 ))}
               </ColumnText>
 
-              <Button>Quero Assinar</Button>
+              <Button onClick={() => window.open(item.link)}>
+                Quero Assinar
+              </Button>
             </Card>
           ))}
         </Row>
