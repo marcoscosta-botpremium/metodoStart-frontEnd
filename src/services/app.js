@@ -40,7 +40,7 @@ const generateOAuthDomain = () => {
 };
 
 export const getDefaultEndpoint = () => ({
-  url: isRealAccount() ? 'green.binaryws.com' : 'blue.binaryws.com',
+  url: 'ws.binaryws.com',
   appId: appid,
 });
 
