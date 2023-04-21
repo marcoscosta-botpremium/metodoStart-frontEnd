@@ -25,7 +25,7 @@ export const isRealAccount = () => {
       (account) => account.token === activeToken
     );
     isReal = !activeAccount[0].accountName.startsWith('VRT');
-  } catch (e) {} // eslint-disable-line no-empty
+  } catch (e) { } // eslint-disable-line no-empty
   return isReal;
 };
 
@@ -40,7 +40,7 @@ const generateOAuthDomain = () => {
 };
 
 export const getDefaultEndpoint = () => ({
-  url: 'ws.binaryws.com',
+  url: isRealAccount() ? 'green.binaryws.com' : 'blue.binaryws.com',
   appId: appid,
 });
 
