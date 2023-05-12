@@ -7,7 +7,7 @@ export const Container = styled(motion.form)`
   height: ${toRem(300)};
 
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
 
   margin-top: ${toRem(40)};

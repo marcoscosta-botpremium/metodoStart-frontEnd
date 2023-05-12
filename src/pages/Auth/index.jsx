@@ -32,8 +32,6 @@ const Auth = () => {
 
             {code && <RecoverPassword code={code} />}
           </Left>
-
-          <Right></Right>
         </Content>
       </Container>
     </>

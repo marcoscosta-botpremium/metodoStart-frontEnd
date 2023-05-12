@@ -33,8 +33,11 @@ export const Content = styled(motion.div)`
 export const Left = styled.div`
   display: flex;
 
-  width: 60%;
+  width: 100%;
   height: 100%;
+
+  align-items: center;
+  place-content: center;
 
   flex-direction: column;
   padding: ${toRem(16)} ${toRem(35)};
@@ -42,7 +45,7 @@ export const Left = styled.div`
   border-radius: 12px 0 0 12px;
 
   img {
-    width: ${toRem(230)};
+    width: ${toRem(300)};
     height: ${toRem(120)};
   }
 
