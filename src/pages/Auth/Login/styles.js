@@ -10,7 +10,7 @@ export const Container = styled(motion.form)`
   align-items: center;
   justify-content: space-between;
 
-  margin-top: ${toRem(40)};
+  margin-top: ${toRem(10)};
 
   h2 {
     margin-bottom: ${toRem(20)};

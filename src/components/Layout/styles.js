@@ -84,7 +84,7 @@ export const Flex = styled(Row)`
     flex-direction: column;
 
     .imgLogo {
-      width: ${toRem(270)};
+      width: ${toRem(200)};
       margin-left: 0;
       margin-bottom: 0;
     }

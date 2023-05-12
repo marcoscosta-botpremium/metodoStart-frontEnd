@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import imgLogo from '../../assets/logo.svg';
+import imgLogo from '../../assets/logo.png';
 import { Img } from '../../styles/global';
 import ForgotPassword from './ForgotPassword/index';
 import Login from './Login/index';

@@ -1,7 +1,7 @@
 import { Stack } from '@mui/material';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import imgLogo from '../../assets/logo.svg';
+import imgLogo from '../../assets/logo.png';
 import { Img, SubTitle } from '../../styles/global';
 import { variants } from '../../utils/motionConfig';
 import Menu from './Menu/index';
