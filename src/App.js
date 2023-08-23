@@ -14,6 +14,7 @@ import { AuthRouter, InternalRouter } from './routes';
 import Global from './styles/global';
 import { theme } from './styles/theme';
 import { createCustomTheme } from './theme';
+import TabsComponent from './components/TabsComponents';
 
 const getRoutes = () => {
   const authenticated = Boolean(localStorage.getItem('accessToken'));
@@ -54,6 +55,7 @@ const AppWrapper = () => {
                 <Router>
                   <Toaster />
                   <App />
+                  <TabsComponent />
                 </Router>
               </MuiProvider>
             </ThemeProvider>

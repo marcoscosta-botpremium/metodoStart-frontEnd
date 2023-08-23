@@ -12,7 +12,12 @@ const LoadingScreen = () => {
       NProgress.done();
     };
   }, []);
-  return <Box />;
+  return <Box style={{
+    width: '100%',
+    height: '100%',
+    display: 'flex',
+    background: '#000',
+  }} />;
 };
 
 export default LoadingScreen;

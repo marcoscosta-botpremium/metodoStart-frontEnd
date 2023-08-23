@@ -46,6 +46,10 @@ export const Card = styled(motion.div)`
       border-color: ${({ theme }) => theme.colors.white};
     `};
 
+  @media (max-width: ${breakPoint.tablet}) {
+    display:none;
+  }
+
   @media (max-width: ${breakPoint.mobileLg}) {
     width: ${toRem(115)};
     height: ${toRem(85)};
