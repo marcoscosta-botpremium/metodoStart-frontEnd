@@ -601,8 +601,8 @@ const Robot = () => {
           </Grid>
         </Card>
       </Stack>
-      <BotModal setOpen={setBotOpen} open={botOpen} />
-      <LoadingModal open={!balance.balance && !botRunning} />
+      <BotModal setOpen={setBotOpen} open={botOpen || !bot} />
+      <LoadingModal open={!balance.balance && !botRunning && !!bot} />
     </Layout >
   );
 };

@@ -4420,7 +4420,7 @@ block-stream@*:
   dependencies:
     inherits "~2.0.0"
 
-"blockly@github:binary-com/blockly":
+"blockly@https://github.com/binary-com/blockly.git":
   version "5.20210325.1"
   resolved "git+ssh://git@github.com/binary-com/blockly.git#77257a515a63b5566ba724ea47df13724765b343"
   integrity sha512-CtdY0Ev/XdndvypVummU3vnE/1QRnUhk9e09Lc7z0uZCgp60YY6wKtSoZaJXthXAzIz/smXIUeSmmNnO1Ruy1w==
