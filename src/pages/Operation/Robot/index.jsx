@@ -20,6 +20,8 @@ import 'react-step-progress-bar/styles.css';
 import { observer as globalObserver } from '../../../common/utils/observer';
 import Chip from '../../../components/Chip';
 import Switch from '../../../components/Switch';
+import { getOAuthURL } from '../../../services/app';
+import { saveBeforeUnload } from '../../../utils/binary';
 import TradeTable from '../../../components/TradeTable';
 import { LoadingModal, BotModal } from '../../../components';
 import { BinaryContext } from '../../../contexts/BinaryContext';
