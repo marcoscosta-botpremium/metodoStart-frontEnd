@@ -23,7 +23,7 @@ import Switch from '../../../components/Switch';
 import { getOAuthURL } from '../../../services/app';
 import { saveBeforeUnload } from '../../../utils/binary';
 import TradeTable from '../../../components/TradeTable';
-import { LoadingModal, BotModal } from '../../../components';
+import { LoadingModal, BotModal, Sure } from '../../../components';
 import { BinaryContext } from '../../../contexts/BinaryContext';
 import { BotContext } from '../../../contexts/BotContext';
 import * as api from '../../../services/api';
@@ -52,6 +52,7 @@ const Robot = () => {
     xml,
     setXml,
     load,
+    setActiveAccount,
     statusBar,
     setStatusBar,
     tokenList,
@@ -61,13 +62,14 @@ const Robot = () => {
     virtualOpen,
     setVirtualOpen,
     realOpen,
+    setTokenList,
     setRealOpen,
     loading,
     setLoading,
     visible,
     setVisible
   } = useContext(BotContext);
-  const { profitTable } = useContext(BinaryContext);
+  const { profitTable, updateTable } = useContext(BinaryContext);
   const navigate = useNavigate();
   const [userInfo, setUser] = useState({});
   const [summary, setSummary] = useState({});
@@ -186,6 +188,76 @@ const Robot = () => {
                   Virtual
                 </Button>
               </Stack>
+              <Sure
+                open={virtualOpen}
+                setOpen={setVirtualOpen}
+                onAccept={() => {
+                  if (localStorage.bootTrue === 'true') {
+                    // eslint-disable-next-line array-callback-return
+                    tokenList.map((item, index) => {
+                      if (!item.loginInfo.is_virtual) {
+                        if (index === 1) {
+                          setTokenList(tokenList.reverse());
+                        }
+                        localStorage.setItem('activeToken', item.token);
+                        setActiveAccount(item);
+                      }
+                    });
+                    updateTable();
+                    globalObserver.emit('summary.clear');
+                    setTrades([]);
+                  } else {
+                    // eslint-disable-next-line array-callback-return
+                    tokenList.map((item, index) => {
+                      if (item.loginInfo.is_virtual) {
+                        if (index === 1) {
+                          setTokenList(tokenList.reverse());
+                        }
+                        localStorage.setItem('activeToken', item.token);
+                        setActiveAccount(item);
+                      }
+                    });
+                    updateTable();
+                    globalObserver.emit('summary.clear');
+                    setTrades([]);
+                  }
+                  setVirtualOpen(false);
+                }}
+              />
+              <Sure
+                open={realOpen}
+                setOpen={setRealOpen}
+                onAccept={() => {
+                  if (localStorage.bootTrue == 'true') {
+                    tokenList.map((item, index) => {
+                      if (item.loginInfo.is_virtual) {
+                        if (index == 1) {
+                          setTokenList(tokenList.reverse());
+                        }
+                        localStorage.setItem('activeToken', item.token);
+                        setActiveAccount(item);
+                      }
+                    });
+                    updateTable();
+                    globalObserver.emit('summary.clear');
+                    setTrades([]);
+                  } else {
+                    tokenList.map((item, index) => {
+                      if (!item.loginInfo.is_virtual) {
+                        if (index == 1) {
+                          setTokenList(tokenList.reverse());
+                        }
+                        localStorage.setItem('activeToken', item.token);
+                        setActiveAccount(item);
+                      }
+                    });
+                    updateTable();
+                    globalObserver.emit('summary.clear');
+                    setTrades([]);
+                  }
+                  setRealOpen(false);
+                }}
+              />
               <Card
                 sx={{
                   marginTop: 1,
@@ -197,7 +269,7 @@ const Robot = () => {
                 }}
               >
                 <Grid container alignItems="row">
-                  <Grid item>
+                  <Grid item md={12} lg={12} sm={12}>
                     <Typography style={{ fontSize: 13, color: '#8A8A8A', width: '100%' }}>
                       Saldo
                     </Typography>
@@ -283,7 +355,7 @@ const Robot = () => {
                       }}
                       onClick={() => setBotOpen(true)}>
                       <img src={robotImg} style={{ width: 50, height: 50 }} /><br />
-                      {bot?.name}
+                      {bot?.name ? bot?.name : 'Escolha uma estratégia'}
                     </Card>
                     : <Card px={2}
                       py={1}
@@ -350,7 +422,7 @@ const Robot = () => {
                           setBotRunning(true);
                         } else {
                           navigate('/strategies');
-                          toast.error('Selecione um robô para continuar');
+                          toast.error('Selecione uma estratégia para continuar');
                         }
                       } else {
                         blockly.stop();
@@ -655,8 +727,16 @@ const Robot = () => {
             Conectar-se
           </Button>
 
-          <Typography mt={4} variant="subtitle2" style={{ textAlign: 'center' }}>
-            Você precisa logar na corretora para conseguir usar um robô
+          <Typography mt={4} variant="subtitle2" sx={{
+            textAlign: 'center',
+            cursor: 'pointer',
+            textDecoration: 'underline',
+          }} onClick={
+            () => {
+              window.open('https://deriv.com/signup/', '_blank')
+            }
+          }>
+            Caso não tenha conta na corretora clique aqui
           </Typography>
         </Grid>
       </Grid>

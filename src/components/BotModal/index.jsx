@@ -94,7 +94,7 @@ export default function BotModal(props) {
               fontSize: 20,
               fontWeight: 'bold',
             }}>
-            Escolha um robô
+            Escolha uma estratégia
           </Typography>
         </DialogTitle>
         <DialogContent style={{ width: '100%' }}>

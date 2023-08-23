@@ -21,15 +21,15 @@ const responsive = {
   },
   laptop: {
     breakpoint: { max: 2000, min: 1024 },
-    items: 2
+    items: 4
   },
   tablet: {
     breakpoint: { max: 1024, min: 768 },
-    items: 1
+    items: 3
   },
   mobile: {
     breakpoint: { max: 464, min: 0 },
-    items: 0
+    items: 1
   }
 };
 
@@ -45,7 +45,7 @@ export default function BotModal(props) {
       <Carousel
         responsive={responsive}
         infinite={true}
-        centerMode={true}
+        centerMode={false}
         autoPlay={false}
         swipeable={true}
         draggable={true}

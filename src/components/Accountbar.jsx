@@ -126,7 +126,15 @@ export const Accountbar = (props) => {
             justifyContent="center"
           >
             <Button
-              sx={{ margin: 1 }}
+              sx={{
+                width: '100%',
+                marginTop: 5,
+                minHeight: 38,
+                borderRadius: 8,
+                fontSize: 12,
+                fontWeight: 'bold',
+                background: 'linear-gradient(0.25turn, #cc2724, #FD3531);',
+              }}
               onClick={() => {
                 setActiveAccount(null);
                 setTokenList([]);
@@ -264,8 +272,15 @@ export const Accountbar = (props) => {
               Conectar-se
             </Button>
 
-            <Typography mt={4} variant="subtitle2">
-              Você precisa logar na corretora para conseguir usar um robô
+            <Typography mt={4} variant="subtitle2" sx={{
+              cursor: 'pointer',
+              textDecoration: 'underline',
+            }} onClick={
+              () => {
+                window.open('https://deriv.com/signup/', '_blank')
+              }
+            }>
+              Caso não tenha conta na corretora clique aqui
             </Typography>
           </Stack>
         )}

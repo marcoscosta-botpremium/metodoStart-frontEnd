@@ -138,7 +138,7 @@ const Bot = () => {
                               setBotRunning(true);
                             } else {
                               navigate('/strategies');
-                              toast.error('Selecione um robô para continuar');
+                              toast.error('Selecione uma estratégia para continuar');
                             }
                           } else {
                             blockly.stop();

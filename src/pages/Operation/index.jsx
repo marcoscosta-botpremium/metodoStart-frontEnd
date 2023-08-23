@@ -88,7 +88,7 @@ const Operation = () => {
         </Row>
 
         <div className="text" onClick={() => navigate('/upgrades')}>
-          <Text>Quero ter acesso a mais robôs em outros planos</Text>
+          <Text>Quero ter acesso a mais estratégias em outros planos</Text>
         </div>
       </Container>
     </Layout>

@@ -42,7 +42,7 @@ function Upgrades() {
       title="Upgrades"
       noBg>
       <Grid sx={{
-        display: { sm: 'block', xs: 'block', md: 'none', lg: 'none', xl: 'none' },
+        display: { sm: 'none', xs: 'none', md: 'none', lg: 'none', xl: 'none' },
       }}>
         <Row
           style={{ justifyContent: 'flex-start' }}>
@@ -64,7 +64,7 @@ function Upgrades() {
         </Row>
       </Grid>
       <Grid sx={{
-        display: { sm: 'none', xs: 'none', md: 'block', lg: 'block', xl: 'block' },
+        display: { sm: 'block', xs: 'block', md: 'block', lg: 'block', xl: 'block' },
         width: { xl: '80vw', lg: '80vw', md: '75vw', sm: '97vw', xs: '95vw' }
       }}>
         <Slider items={upgrades} />

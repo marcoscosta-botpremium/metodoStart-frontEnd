@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 import { breakPoint, Column, Row, toRem } from '../../styles/global';
 
 export const Container = styled(Row)`
-  height: ${toRem(630)};
+  //height: ${toRem(630)};
   padding: 0 ${toRem(12)};
   width: 100%;
   overflow: hidden;
@@ -13,6 +13,8 @@ export const Container = styled(Row)`
   }
 
   .vimeo-player{
+    display:flex;
+    justify-content:center;
     width:100% !important;
   }
 
@@ -43,7 +45,7 @@ export const Container = styled(Row)`
   @media (min-width: 1024px) {
     iframe {
       width: 100%;
-      height: 400px;
+      //height: 400px;
     }
   }
 `;

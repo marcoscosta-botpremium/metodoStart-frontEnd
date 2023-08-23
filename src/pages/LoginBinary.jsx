@@ -18,7 +18,7 @@ const LoginBinary = () => {
   return (
     <div
       style={{
-        background: '#221c33',
+        background: '#010101',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
