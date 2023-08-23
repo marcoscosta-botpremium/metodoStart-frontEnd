@@ -5,6 +5,7 @@ import * as api from '../../services/api';
 const AuthContext = createContext({});
 
 const AuthProvider = ({ children }) => {
+  const [isAuthenticated, setIsAuthenticated] = useState(localStorage.getItem('accessToken') ? true : false);
   const [user, setUser] = useState(null);
 
   const getUser = async (navigate) => {
@@ -12,8 +13,8 @@ const AuthProvider = ({ children }) => {
       const response = await api.getUser();
 
       if (response.success) {
-        setUser(response);
-        localStorage.setItem('userInfo', JSON.stringify(response?.user));
+        setUser(response)
+        localStorage.setItem('userInfo', JSON.stringify(response?.user))
         localStorage.setItem('getUser', JSON.stringify(response));
 
         navigate('/home');
@@ -35,6 +36,7 @@ const AuthProvider = ({ children }) => {
 
       if (response.success) {
         localStorage.setItem('accessToken', response.token);
+        setIsAuthenticated(true);
         getUser(navigate);
       } else {
         toast.error(response.message, {
@@ -102,6 +104,8 @@ const AuthProvider = ({ children }) => {
         login,
         forgotPassword,
         recoverPassword,
+        isAuthenticated,
+        setIsAuthenticated,
       }}
     >
       {children}

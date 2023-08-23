@@ -150,7 +150,7 @@ const Robot = () => {
                         : isRealAccount()
                     )
                       ? 'linear-gradient(0.25turn, #0D953C, #1AE363);'
-                      : 'rgb(47, 45, 55)',
+                      : '#0d0e0d',
                     width: '50%',
                     fontSize: 14,
                     borderTopRightRadius: 0,
@@ -175,7 +175,7 @@ const Robot = () => {
                         : !isRealAccount()
                     )
                       ? 'linear-gradient(0.25turn, #0D953C, #1AE363);'
-                      : 'rgb(47, 45, 55)',
+                      : '#0d0e0d',
                     fontSize: 14,
                     borderTopLeftRadius: 0,
                     borderBottomLeftRadius: 0,
@@ -193,7 +193,7 @@ const Robot = () => {
                   paddingX: 2,
                   marginLeft: 3,
                   marginRight: 3,
-                  background: '#2F2D37',
+                  background: '#0d0e0d',
                 }}
               >
                 <Grid container alignItems="row">
@@ -242,7 +242,7 @@ const Robot = () => {
                   paddingX: 2,
                   marginLeft: 3,
                   marginRight: 3,
-                  background: '#2f2d37',
+                  background: '#0d0e0d',
                 }}>
                 <Stack>
                   <Typography style={{ fontSize: 13, color: '#8A8A8A', width: '100%' }}>
@@ -265,25 +265,45 @@ const Robot = () => {
               </Card>
               <Grid container>
                 <Grid item xs={6} md={6} lg={6}>
-                  <Card px={2}
-                    py={1}
-                    sx={{
-                      marginTop: 1,
-                      paddingY: 1,
-                      paddingX: 2,
-                      marginLeft: 3,
-                      marginRight: 3,
-                      background: '#2f2d37',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      textAlign: 'center',
-                      color: 'white',
-                      fontSize: 14
-                    }}
-                    onClick={() => setBotOpen(true)}>
-                    <img src={robotImg} style={{ width: 50, height: 50 }} /><br />
-                    Escolha um robô
-                  </Card>
+                  {(!!bot) ?
+                    <Card px={2}
+                      py={1}
+                      sx={{
+                        marginTop: 1,
+                        paddingY: 1,
+                        paddingX: 2,
+                        marginLeft: 3,
+                        marginRight: 3,
+                        background: '#0d0e0d',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        textAlign: 'center',
+                        color: 'white',
+                        fontSize: 14
+                      }}
+                      onClick={() => setBotOpen(true)}>
+                      <img src={robotImg} style={{ width: 50, height: 50 }} /><br />
+                      {bot?.name}
+                    </Card>
+                    : <Card px={2}
+                      py={1}
+                      sx={{
+                        marginTop: 1,
+                        paddingY: 1,
+                        paddingX: 2,
+                        marginLeft: 3,
+                        marginRight: 3,
+                        background: '#0d0e0d',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        textAlign: 'center',
+                        color: 'white',
+                        fontSize: 14
+                      }}
+                      onClick={() => setBotOpen(true)}>
+                      <img src={robotImg} style={{ width: 50, height: 50 }} /><br />
+                      Escolha um robô
+                    </Card>}
                 </Grid>
                 <Grid item xs={6} md={6} lg={6}>
                   <Card px={2}
@@ -294,7 +314,7 @@ const Robot = () => {
                       paddingX: 2,
                       marginLeft: 3,
                       marginRight: 3,
-                      background: '#2f2d37',
+                      background: '#0d0e0d',
                     }}
                     onClick={() => {
                       // scroll to bottom
@@ -321,7 +341,7 @@ const Robot = () => {
                       paddingX: 2,
                       marginLeft: 3,
                       marginRight: 3,
-                      background: botRunning ? '#2f2d37' : 'linear-gradient(0.25turn, #0D953C, #1AE363);'
+                      background: botRunning ? '#0d0e0d' : 'linear-gradient(0.25turn, #0D953C, #1AE363);'
                     }}
                     onClick={() => {
                       if (!botRunning) {
@@ -604,7 +624,7 @@ const Robot = () => {
         </Card>
       </Stack>
       <BotModal setOpen={setBotOpen} open={botOpen || !bot} />
-      <LoadingModal open={!balance.balance && !botRunning && !!bot && isConnected} />
+      <LoadingModal open={!balance.balance && !botRunning && !!bot && !isConnected} />
     </Layout >
   ) : (
     <Layout title="Operações">

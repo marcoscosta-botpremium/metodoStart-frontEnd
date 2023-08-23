@@ -11,7 +11,7 @@ export const primary = {
   purple: "#A798FF",
   yellow: "#FF9777",
 };
-const secondaryMain = "#2f2d37";
+const secondaryMain = "#0d0e0d";
 export const secondary = {
   light: "#E3F0FF",
   main: secondaryMain,

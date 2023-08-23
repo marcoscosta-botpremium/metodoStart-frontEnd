@@ -6,6 +6,9 @@ import imgUpgrade from '../../../assets/upgrade.svg';
 import { Img } from '../../../styles/global';
 import { variants } from '../../../utils/motionConfig';
 import { Card, Container, Txt } from './styles';
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import PsychologyIcon from '@mui/icons-material/Psychology';
+import UpdateIcon from '@mui/icons-material/Update';
 
 function Menu({ title }) {
   const navigate = useNavigate();
@@ -20,7 +23,10 @@ function Menu({ title }) {
         }}
         onClick={() => navigate('/tutorials')}
       >
-        <Img src={imgAulas} alt="aulas" />
+        <DashboardIcon sx={{
+          width: 40,
+          height: 40
+        }} />
         <Txt>Aulas</Txt>
       </Card>
 
@@ -32,7 +38,12 @@ function Menu({ title }) {
         }}
         onClick={() => navigate('/robot')}
       >
-        <Img src={imgOperacoes} alt="operacoes" />
+        <PsychologyIcon
+          sx={{
+            width: 40,
+            height: 40
+          }}
+        />
         <Txt>Operações</Txt>
       </Card>
 
@@ -44,7 +55,11 @@ function Menu({ title }) {
         }}
         onClick={() => navigate('/upgrades')}
       >
-        <Img src={imgUpgrade} alt="upgrade" />
+        <UpdateIcon
+          sx={{
+            width: 40,
+            height: 40
+          }} />
         <Txt>Atualizações</Txt>
       </Card>
     </Container>

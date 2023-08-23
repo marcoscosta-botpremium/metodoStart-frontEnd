@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
     position: 'fixed',
     bottom: 0,
     width: '100%',
-    backgroundColor: 'rgb(47, 45, 55)',
+    backgroundColor: '#0d0e0d',
     [theme.breakpoints.up('md')]: {
       display: 'none',
     },

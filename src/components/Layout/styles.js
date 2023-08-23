@@ -101,7 +101,7 @@ export const Items = styled(motion.div)`
   padding: ${toRem(12)};
 
   border-radius: ${toRem(10)};
-  background: ${({ theme }) => theme.colors.backgroundLight};
+  background: ${({ theme, noBg }) => (noBg) ? 'transparent' : theme.colors.backgroundLight};
 
   @media (max-width: ${breakPoint.mobileLg}) {
     height: unset;

@@ -14,7 +14,7 @@ export const Container = styled(motion.div)`
 
   flex-wrap: wrap;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
 
   @media (max-width: ${breakPoint.mobileLg}) {
     height: 100%;
@@ -43,6 +43,7 @@ export const Card = styled(motion.div)`
   display: flex;
   width: ${toRem(330)};
   height: ${toRem(500)};
+  margin: ${toRem(50)};
 
   align-items: flex-end;
   justify-content: flex-start;
@@ -77,6 +78,9 @@ export const Card = styled(motion.div)`
   @media (max-width: ${breakPoint.mobileLg}) {
     width: 90%;
     height: ${toRem(280)};
+    margin: 0;
+
+    background-position: top;
 
     border-radius: 20px;
 

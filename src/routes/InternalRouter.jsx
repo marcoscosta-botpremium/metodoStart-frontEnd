@@ -27,10 +27,10 @@ export const InternalRouter = [
     element: <Home />,
   },
 
-  {
-    path: 'operation',
-    element: <Operation />,
-  },
+  // {
+  //   path: 'operation',
+  //   element: <Operation />,
+  // },
   {
     path: 'upgrades',
     element: <Upgrades />,

@@ -161,7 +161,7 @@ const Layout = (props) => {
           md={2}
           xs={0}
           order={1}
-          sx={{ display: { xs: 'none', md: 'block' }, background: 'rgb(47, 45, 55)' }}
+          sx={{ display: { xs: 'none', md: 'block' }, background: '#0d0e0d' }}
         >
           <Accountbar
             key={1}

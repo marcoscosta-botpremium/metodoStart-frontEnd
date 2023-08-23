@@ -42,7 +42,7 @@ function Config() {
     e.preventDefault();
     var reader = new FileReader();
     reader.readAsDataURL(e.target.files[0]);
-    reader.onload = function () {
+    reader.onload = function() {
       const img = reader.result;
       setUser((data) => ({
         ...data,
@@ -51,7 +51,7 @@ function Config() {
           picture: img.replace('data:image/png;base64,', ''),
         },
       }));
-      api.setPicture(img).then(() => {});
+      api.setPicture(img).then(() => { });
     };
   };
 
@@ -148,7 +148,7 @@ function Config() {
       </Row>
 
       {user?.user?.email === 'marcos.vinicios_12@hotmail.com' && (
-        <div style={{ position: 'absolute', right: 10, bottom: 0 }}>
+        <div style={{ position: 'absolute', top: 10, left: 10 }}>
           <input
             type="checkbox"
             defaultChecked={boostTrueChecked}

@@ -20,6 +20,7 @@ import {
   generateLiveApiInstance,
 } from '../../../services/app';
 import { Img } from '../../../styles/global';
+import { AuthContext } from '../../../contexts/auth';
 moment.locale('pt-br');
 
 const useStyles = makeStyles({
@@ -28,7 +29,7 @@ const useStyles = makeStyles({
     width: 300,
   },
   paperAccount: {
-    background: '#221c33',
+    background: '#0d0e0d',
     width: 300,
   },
 });
@@ -36,6 +37,7 @@ const useStyles = makeStyles({
 const api = generateLiveApiInstance();
 
 const Side = ({ ...rest }) => {
+  const { setIsAuthenticated } = useContext(AuthContext)
   const { tokenList, setActiveAccount, activeAccount, bots, setBalance, loading, setLoading, visible, setVisible } =
     useContext(BotContext);
 
@@ -115,7 +117,7 @@ const Side = ({ ...rest }) => {
         md={2}
         xs={0}
         order={1}
-        sx={{ display: { xs: 'none', md: 'block' }, width: '100%', background: 'rgb(47, 45, 55)' }}
+        sx={{ display: { xs: 'none', md: 'block' }, width: '100%', background: '#0d0e0d' }}
       >
         <Accountbar
           key={1}
@@ -148,6 +150,7 @@ const Side = ({ ...rest }) => {
             onClick={() => {
               navigate('/login');
               localStorage.clear();
+              setIsAuthenticated(false)
             }}
           />
         </Stack>
@@ -191,7 +194,7 @@ const Side = ({ ...rest }) => {
             width={30}
             onClick={() => {
               localStorage.clear();
-
+              setIsAuthenticated(false)
               navigate('/login');
             }}
           />

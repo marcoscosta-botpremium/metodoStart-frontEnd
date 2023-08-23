@@ -1,12 +1,12 @@
 import StyledEngineProvider from '@mui/material/StyledEngineProvider';
-import { useEffect } from 'react';
+import { useEffect, useContext } from 'react';
 import toast, { Toaster, useToasterStore } from 'react-hot-toast';
 import { BrowserRouter as Router, useRoutes } from 'react-router-dom';
 // import { ToastContainer } from 'react-toastify';
 //import 'react-toastify/dist/ReactToastify.css';
 import { ThemeProvider as MuiProvider } from '@mui/material';
 import { ThemeProvider } from 'styled-components';
-import { AuthProvider } from './contexts/auth';
+import { AuthProvider, AuthContext } from './contexts/auth';
 import BinaryProvider from './contexts/BinaryContext';
 import BotProvider from './contexts/BotContext';
 import useSettings from './hooks/useSettings';
@@ -17,14 +17,19 @@ import { createCustomTheme } from './theme';
 import TabsComponent from './components/TabsComponents';
 
 const getRoutes = () => {
-  const authenticated = Boolean(localStorage.getItem('accessToken'));
-  return authenticated ? InternalRouter : AuthRouter;
+  const { isAuthenticated } = useContext(AuthContext)
+  return isAuthenticated ? InternalRouter : AuthRouter;
 };
 
 const App = () => {
   let routes = useRoutes(getRoutes());
   return routes;
 };
+
+const Tabs = () => {
+  const { isAuthenticated } = useContext(AuthContext)
+  return !!isAuthenticated && <TabsComponent />
+}
 
 const AppWrapper = () => {
   const { toasts } = useToasterStore();
@@ -55,7 +60,7 @@ const AppWrapper = () => {
                 <Router>
                   <Toaster />
                   <App />
-                  <TabsComponent />
+                  <Tabs />
                 </Router>
               </MuiProvider>
             </ThemeProvider>

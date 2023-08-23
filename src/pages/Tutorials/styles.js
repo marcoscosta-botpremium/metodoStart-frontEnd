@@ -9,8 +9,11 @@ export const Container = styled(Row)`
   overflow: hidden;
 
   iframe {
-    width: ${toRem(620)};
-    height: ${toRem(350)};
+    width: 100% !important;
+  }
+
+  .vimeo-player{
+    width:100% !important;
   }
 
   @media (max-width: ${breakPoint.mobileLg}) {
@@ -29,6 +32,18 @@ export const Container = styled(Row)`
     iframe {
       width: ${toRem(335)};
       height: ${toRem(250)};
+    }
+  }
+  @media (min-width: 1420px) {
+    iframe {
+      width: 100%;
+      height: 500px;
+    }
+  }
+  @media (min-width: 1024px) {
+    iframe {
+      width: 100%;
+      height: 400px;
     }
   }
 `;

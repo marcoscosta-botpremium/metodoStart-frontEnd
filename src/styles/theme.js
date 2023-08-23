@@ -12,7 +12,7 @@ export const theme = {
     blue: '#1097F3',
 
     background: '#010101',
-    backgroundDark: '#2f2d37',
-    backgroundLight: '#2F2D37',
+    backgroundDark: '#0d0e0d',
+    backgroundLight: '#0d0e0d',
   },
 };

@@ -23,7 +23,7 @@ export const Content = styled(motion.div)`
   box-shadow: rgba(0, 0, 0, 0.3) 0px 25px 50px -12px;
   border-radius: 12px;
 
-  background: ${({ theme }) => theme.colors.backgroundDark};
+  background: #010101;
 
   @media (max-width: ${breakPoint.mobileLg}) {
     width: 100%;

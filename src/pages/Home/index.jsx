@@ -16,7 +16,7 @@ const Home = () => {
             <Title>Aulas</Title>
           </Card>
 
-          <Card type="2" variants={variants.itemSlide} onClick={() => navigate('/operation')}>
+          <Card type="2" variants={variants.itemSlide} onClick={() => navigate('/robot')}>
             <Title>Operações</Title>
           </Card>
 

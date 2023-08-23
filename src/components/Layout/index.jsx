@@ -8,7 +8,7 @@ import Menu from './Menu/index';
 import Side from './Side/index';
 import { Container, Content, Flex, Items, Left, Rigth } from './styles';
 
-const Layout = ({ title, noMenu, children }) => {
+const Layout = ({ title, noMenu, children, noBg }) => {
   const navigate = useNavigate();
 
   return (
@@ -37,7 +37,7 @@ const Layout = ({ title, noMenu, children }) => {
           {noMenu || (
             <>
               <SubTitle>{title}</SubTitle>
-              <Items>{children}</Items>
+              <Items noBg={noBg}>{children}</Items>
             </>
           )}
 

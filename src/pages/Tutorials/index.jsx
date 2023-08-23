@@ -52,6 +52,7 @@ const Tutorials = () => {
         <VideoContainer>
           {selectedVideo?.link && (
             <Vimeo
+              className="vimeo-player"
               video={selectedVideo?.link}
               showTitle={false}
               showPortrait={false}
