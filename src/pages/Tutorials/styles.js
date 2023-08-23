@@ -40,6 +40,10 @@ export const VideoContainer = styled(Column)`
     margin: ${toRem(12)} 0;
   }
 
+  iframe{
+    border-radius:10px;
+  }
+
   @media (max-width: ${breakPoint.mobileLg}) {
     width: 100%;
 
