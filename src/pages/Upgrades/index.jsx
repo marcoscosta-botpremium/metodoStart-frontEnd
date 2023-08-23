@@ -38,7 +38,8 @@ function Upgrades() {
   }, []);
 
   return (
-    <Layout title="Upgrades">
+    <Layout
+      title="Upgrades">
       <Grid sx={{
         display: { sm: 'block', xs: 'block', md: 'none', lg: 'none', xl: 'none' },
       }}>
