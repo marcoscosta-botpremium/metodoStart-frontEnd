@@ -122,7 +122,7 @@ const Robot = () => {
     });
   }, [trades]);
 
-  return (
+  return isConnected ? (
     <Layout title="Operações">
       <Grid container spacing={4}>
         <Grid item xs={12} md={6} lg={4}>
@@ -602,9 +602,44 @@ const Robot = () => {
         </Card>
       </Stack>
       <BotModal setOpen={setBotOpen} open={botOpen || !bot} />
-      <LoadingModal open={!balance.balance && !botRunning && !!bot} />
+      <LoadingModal open={!balance.balance && !botRunning && !!bot && isConnected} />
     </Layout >
-  );
+  ) : (
+    <Layout title="Operações">
+      {/* Clique para se conectar */}
+      <Grid
+        container
+        direction="row"
+        justifyContent="center"
+        alignItems="center"
+        sx={{ height: '50vh' }}
+      >
+        <Grid item xs={12} md={8} lg={3}>
+          <Button
+            sx={{
+              width: '100%',
+              marginTop: 5,
+              minHeight: 38,
+              borderRadius: 8,
+              fontSize: 12,
+              fontWeight: 'bold',
+              background: 'linear-gradient(0.25turn, #0D953C, #1AE363);',
+            }}
+            onClick={() => {
+              saveBeforeUnload();
+              document.location = getOAuthURL();
+            }}
+          >
+            Conectar-se
+          </Button>
+
+          <Typography mt={4} variant="subtitle2" style={{ textAlign: 'center' }}>
+            Você precisa logar na corretora para conseguir usar um robô
+          </Typography>
+        </Grid>
+      </Grid>
+    </Layout>
+  )
 };
 
 export default Robot;

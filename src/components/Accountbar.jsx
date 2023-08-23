@@ -265,7 +265,7 @@ export const Accountbar = (props) => {
             </Button>
 
             <Typography mt={4} variant="subtitle2">
-              Você precisa logar na binary para conseguir usar um robô
+              Você precisa logar na corretora para conseguir usar um robô
             </Typography>
           </Stack>
         )}
