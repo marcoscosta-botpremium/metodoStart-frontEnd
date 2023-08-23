@@ -8,7 +8,8 @@ export const toRem = (value) => {
 
 export const breakPoint = {
   mobile: '388px',
-  mobileLg: '430px',
+  mobileLg: '640px',
+  tablet: '900px',
   laptop: '1400px',
 };
 
@@ -35,7 +36,7 @@ export default createGlobalStyle`
 
       html {
         font-size: 100%;
-        
+
         @media (max-width: ${breakPoint.mobile}) {
           font-size: 85%;
         }
@@ -47,7 +48,7 @@ export default createGlobalStyle`
           font-size: 88%;
         }
     }
-    
+
     #root{
         margin:0 auto;
     }

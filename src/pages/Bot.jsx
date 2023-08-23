@@ -412,99 +412,6 @@ const Bot = () => {
                     </Card>
                   </Grid>
                 </Grid>
-                <Grid xs={12} md={12} spacing={2}>
-                  <Stack
-                    alignItems="center"
-                    padding={3}
-                    sx={{ display: { xs: 'flex', md: 'none' } }}
-                    paddingBottom={7}
-                  >
-                    <ProgressBar
-                      width="90%"
-                      height="7px"
-                      percent={statusBar}
-                      filledBackground="linear-gradient(0.25turn, #6cdd60, #2196b6)"
-                    >
-                      <Step transition="scale">
-                        {({ accomplished }) => (
-                          <Stack
-                            style={{
-                              width: 17,
-                              height: 17,
-                              borderRadius: 17,
-                              background: accomplished ? '#6cdd60' : '#999',
-                              alignItems: 'center',
-                              justifyContent: 'center',
-                            }}
-                          >
-                            <Typography
-                              variant="caption"
-                              sx={{
-                                marginTop: 7,
-                                color: '#777',
-                                fontWeight: 'bold',
-                              }}
-                            >
-                              Analisando
-                            </Typography>
-                          </Stack>
-                        )}
-                      </Step>
-                      <Step transition="scale">
-                        {({ accomplished }) => (
-                          <Stack
-                            style={{
-                              width: 17,
-                              height: 17,
-                              borderRadius: 17,
-                              background: accomplished
-                                ? 'linear-gradient(0.25turn, #3DB09A, #3AAD9E)'
-                                : '#999',
-                              alignItems: 'center',
-                              justifyContent: 'center',
-                            }}
-                          >
-                            <Typography
-                              variant="caption"
-                              sx={{
-                                marginTop: 7,
-                                color: '#777',
-                                fontWeight: 'bold',
-                              }}
-                            >
-                              Operação realizada
-                            </Typography>
-                          </Stack>
-                        )}
-                      </Step>
-                      <Step transition="scale">
-                        {({ accomplished }) => (
-                          <Stack
-                            style={{
-                              width: 17,
-                              height: 17,
-                              borderRadius: 17,
-                              background: accomplished ? '#2196b6' : '#999',
-                              alignItems: 'center',
-                              justifyContent: 'center',
-                            }}
-                          >
-                            <Typography
-                              variant="caption"
-                              sx={{
-                                marginTop: 7,
-                                color: '#777',
-                                fontWeight: 'bold',
-                              }}
-                            >
-                              Operação finalizada
-                            </Typography>
-                          </Stack>
-                        )}
-                      </Step>
-                    </ProgressBar>
-                  </Stack>
-                </Grid>
               </Grid>
               <Scrollbars style={{ width: '100%', height: '475px' }}>
                 <TradeTable />
@@ -538,7 +445,7 @@ const Bot = () => {
                         sx={{ fontSize: 16, fontWeight: 'bold', color: '#fff' }}
                       >
                         {localStorage.bootTrue == 'true' &&
-                        userInfo?.user?.email ==
+                          userInfo?.user?.email ==
                           'marcos.vinicios_12@hotmail.com'
                           ? 'CR2623624'
                           : tokenList[0]?.accountName}

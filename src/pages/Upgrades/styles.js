@@ -5,7 +5,6 @@ import { Column, Title, toRem } from '../../styles/global';
 export const Container = styled(motion.div)`
   display: flex;
   width: 100%;
-  height: 100%;
 
   justify-content: center;
   align-items: center;
@@ -29,19 +28,19 @@ export const Container = styled(motion.div)`
 
 export const Card = styled(motion.div)`
   display: flex;
-  width: ${toRem(305)};
-  height: ${toRem(420)};
+  width: ${toRem(300)};
+  height: ${toRem(500)};
 
-  margin: 0 auto;
-  margin-bottom: ${toRem(25)};
-  padding: ${toRem(15)} ${toRem(15)} ${toRem(30)};
+  margin-left: ${toRem(15)};
+  margin-bottom: ${toRem(10)};
+  padding: ${toRem(15)} ${toRem(15)} ${toRem(15)};
 
-  justify-content: space-between;
-  align-items: center;
+  justify-content: flex-end;
+  align-items: flex-start;
   flex-direction: column;
 
   border-radius: 8px;
-  background: ${({ theme }) => theme.colors.backgroundDark};
+  background: url(${({ image }) => image}) center no-repeat;
 
   .value {
     font-size: ${toRem(18)};
@@ -62,6 +61,13 @@ export const Card = styled(motion.div)`
       ${({ theme }) => theme.colors.secundary}
     );
   }
+  @media (max-width: 768px) {
+    width: 100%;
+    height: ${toRem(350)};
+
+    margin: 0 auto;
+    margin-bottom: ${toRem(25)};
+    }
 `;
 
 export const ColumnText = styled(Column)`
@@ -102,4 +108,19 @@ export const Price = styled(Title)`
   span {
     font-weight: 400;
   }
+`;
+
+export const Subtitle = styled(Title)`
+  margin: 0;
+  padding: 0;
+  padding-bottom: 7px;
+  font-size: ${toRem(27)};
+  color: ${({ theme }) => theme.colors.white};
+`;
+
+export const Description = styled(Title)`
+  margin: 0;
+  padding-bottom: 7px;
+  font-size: ${toRem(14)};
+  color: ${({ theme }) => theme.colors.gray};
 `;

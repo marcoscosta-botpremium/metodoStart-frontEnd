@@ -14,15 +14,11 @@ export const Container = styled(motion.div)`
 
 export const Content = styled(motion.div)`
   display: flex;
-  width: 94%;
-  height: 92%;
+  width: 100%;
+  height: 100%;
 
   align-items: center;
   justify-content: space-between;
-
-  border: 1px solid;
-  border-right: none;
-  border-color: ${({ theme }) => theme.colors.grayLight};
 
   @media (max-width: ${breakPoint.mobileLg}) {
     width: 100%;
@@ -39,6 +35,10 @@ export const Left = styled(motion.div)`
   padding: ${toRem(35)} ${toRem(30)};
 
   @media (max-width: ${breakPoint.mobileLg}) {
+    width: 100%;
+    padding: ${toRem(50)} ${toRem(8)};
+  }
+  @media (max-width: ${breakPoint.tablet}) {
     width: 100%;
     padding: ${toRem(50)} ${toRem(8)};
   }
@@ -62,6 +62,9 @@ export const Rigth = styled(motion.div)`
   background: ${({ theme }) => theme.colors.backgroundDark};
 
   @media (max-width: ${breakPoint.mobileLg}) {
+    display: none;
+  }
+  @media (max-width: ${breakPoint.tablet}) {
     display: none;
   }
 `;

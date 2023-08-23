@@ -96,7 +96,7 @@ const Layout = (props) => {
     }
   }, [activeAccount]);
 
-  useEffect(() => {}, [bots]);
+  useEffect(() => { }, [bots]);
 
   return (
     <Grid direction="row" container height="100%">
@@ -161,7 +161,7 @@ const Layout = (props) => {
           md={2}
           xs={0}
           order={1}
-          sx={{ display: { xs: 'none', md: 'block' }, background: '#1e192d' }}
+          sx={{ display: { xs: 'none', md: 'block' }, background: 'rgb(47, 45, 55)' }}
         >
           <Accountbar
             key={1}

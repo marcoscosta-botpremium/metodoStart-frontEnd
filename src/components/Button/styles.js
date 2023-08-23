@@ -17,8 +17,8 @@ export const Btn = styled(motion.button)`
 
   background: linear-gradient(
     to right,
-    ${({ theme }) => theme.colors.primary},
-    ${({ theme }) => theme.colors.secundary}
+    #0D953C,
+    #1AE363
   );
 
   .loadingImg {

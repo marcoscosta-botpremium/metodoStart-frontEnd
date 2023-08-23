@@ -89,6 +89,10 @@ const BotProvider = ({ children }) => {
   const [statusBar, setStatusBar] = useState(0);
   const [userInfo, setUser] = useState({});
   const [isAuthenticated, setAuthenticated] = useState(false);
+  const [virtualOpen, setVirtualOpen] = useState(false);
+  const [realOpen, setRealOpen] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [visible, setVisible] = useState(true);
 
   function randomIntFromInterval(min, max) {
     // min and max included
@@ -252,6 +256,14 @@ const BotProvider = ({ children }) => {
         setConnected: setConnected,
         setAuthenticated,
         isAuthenticated,
+        virtualOpen,
+        setVirtualOpen,
+        realOpen,
+        setRealOpen,
+        loading,
+        setLoading,
+        visible,
+        setVisible
       }}
     >
       {children}

@@ -46,7 +46,7 @@ export const getDefaultEndpoint = () => ({
 
 export const getLanguage = () => 'pt-br';
 export const getOAuthURL = () =>
-  `https://${generateOAuthDomain()}/oauth2/authorize?app_id=${appid}&l=${getLanguage().toUpperCase()}&brand=binary`;
+  `https://${generateOAuthDomain()}/oauth2/authorize?app_id=${appid}&l=${getLanguage().toUpperCase()}&brand=deriv`;
 
 export const getServerAddressFallback = () => getDefaultEndpoint().url;
 

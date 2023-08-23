@@ -40,7 +40,7 @@ const Reports = () => {
       setManagement(mng => {
         return [
           ...mng.filter(tm => tm.id != data.data.id),
-          {...data.data, stopLoss:calculated?.calculatedLoss, stopGain:calculated?.calculatedProfit}
+          { ...data.data, stopLoss: calculated?.calculatedLoss, stopGain: calculated?.calculatedProfit }
         ].sort((a, b) => b.id - a.id)
       })
       setSaved(true)
@@ -60,13 +60,13 @@ const Reports = () => {
   }, [balance])
 
   useEffect(() => {
-    if(!settings.calculatedLoss && !settings.calculatedProfit){
+    if (!settings.calculatedLoss && !settings.calculatedProfit) {
       setCalculated({
-        calculatedProfit: (settings.stopGain) ? (settings.balance * (settings.stopGain / 100)):0 ,
-        calculatedLoss: (settings.stopLoss) ? (settings.balance * (settings.stopLoss / 100)):0,
+        calculatedProfit: (settings.stopGain) ? (settings.balance * (settings.stopGain / 100)) : 0,
+        calculatedLoss: (settings.stopLoss) ? (settings.balance * (settings.stopLoss / 100)) : 0,
       })
-      if(management.length){
-        const data = management.reduce(function (prev, curr) {
+      if (management.length) {
+        const data = management.reduce(function(prev, curr) {
           return prev.id > curr.id ? prev : curr
         })
         setManagement(mng => {
@@ -106,79 +106,79 @@ const Reports = () => {
     setManagement(management => {
       const newData = { ...item, [e.target.name]: e.target.value }
       const oldData = management.filter(tm => item.id != tm.id)
-      return [newData, ...oldData]  
+      return [newData, ...oldData]
     })
   }
 
   return (
-    
+
     <Layout
       title="Mercado"
       user={userInfo.user}
       subscription={userInfo.subscription}
     >
       <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="pt-br">
-      <Grid item md={12} xs={12} order={1}>
-        <ForexSlider key={4} />
-        <Stack alignItems="flex-start" spacing={2}>
-          <Typography variant="h5" sx={{ marginTop: 5, fontWeight: 'bold' }}>
-            Gerenciamento
-          </Typography> 
-          <Grid container sx={{ width: '100%' }} direction="row">
-            <Grid item xs={12} paddingTop={1} paddingBottom={1} md={4} lg={2}>
-              <Card sx={{ marginTop: 1, background: '#2B2440', height: '100%' }} md={3}>
-                <Stack alignItems="flex-start" justifyContent={'center'} sx={{ height: '100%' }} padding={1}>
-                  <Grid sx={{ width: "100%" }} direction="row" alignItems="center">
-                    <Typography variant="caption" sx={{ fontSize: 14, color: 'white', fontWeight: 'bold', justifyContent: 'center' }} color="primary.muted">
-                      Valor Inicial
-                    </Typography>
-                  </Grid>
-                  <Grid sx={{ width: '100%', height: '100%', display: 'flex' }} alignItems="flex-end">
-                    <AppTextField
-                      name="startValue"
-                      sx={{
-                        width: '77%',
-                        "& input::placeholder": {
-                          fontSize: 13
-                        },
-                        input:{
-                          fontWeight: 'bold'
-                        }
-                      }}
-                      InputProps={{
-                        startAdornment: (
-                          <span style={{ color: '#555', paddingRight: '10px' }}>U$</span>
-                        ),
-                        inputProps: { min: 1}
-                      }}
-                      placeholder="0.00"
-                      type="number"
-                      value={settings?.balance}
-                      onChange={(e) => {
-                        if (Number(e.target.value) > 1) {
-                          setValue('balance', e.target.value)
-                          setManagement(mng => (
-                            [
-                              ...mng.filter(tm => tm.id != mng[0].id),
-                              { ...mng[0], balance: e.target.value }
-                            ]
-                          ))
-                        }else{
-                          setValue('balance', 1)
-                          setManagement(mng => (
-                            [
-                              ...mng.filter(tm => tm.id != mng[0].id),
-                              { ...mng[0], balance: 1 }
-                            ]
-                          ))
-                        }
-                      }}
-                    />
-                  </Grid>
-                </Stack>
-              </Card>
-            </Grid>
-              <Grid item paddingTop={1} paddingBottom={1} padding={{lg:1, md:1, }} xs={12} md={4} lg={2}>
+        <Grid item md={12} xs={12} order={1}>
+          <ForexSlider key={4} />
+          <Stack alignItems="flex-start" spacing={2}>
+            <Typography variant="h5" sx={{ marginTop: 5, fontWeight: 'bold' }}>
+              Gerenciamento
+            </Typography>
+            <Grid container sx={{ width: '100%' }} direction="row">
+              <Grid item xs={12} paddingTop={1} paddingBottom={1} md={4} lg={2}>
+                <Card sx={{ marginTop: 1, background: '#2B2440', height: '100%' }} md={3}>
+                  <Stack alignItems="flex-start" justifyContent={'center'} sx={{ height: '100%' }} padding={1}>
+                    <Grid sx={{ width: "100%" }} direction="row" alignItems="center">
+                      <Typography variant="caption" sx={{ fontSize: 14, color: 'white', fontWeight: 'bold', justifyContent: 'center' }} color="primary.muted">
+                        Valor Inicial
+                      </Typography>
+                    </Grid>
+                    <Grid sx={{ width: '100%', height: '100%', display: 'flex' }} alignItems="flex-end">
+                      <AppTextField
+                        name="startValue"
+                        sx={{
+                          width: '77%',
+                          "& input::placeholder": {
+                            fontSize: 13
+                          },
+                          input: {
+                            fontWeight: 'bold'
+                          }
+                        }}
+                        InputProps={{
+                          startAdornment: (
+                            <span style={{ color: '#555', paddingRight: '10px' }}>U$</span>
+                          ),
+                          inputProps: { min: 1 }
+                        }}
+                        placeholder="0.00"
+                        type="number"
+                        value={settings?.balance}
+                        onChange={(e) => {
+                          if (Number(e.target.value) > 1) {
+                            setValue('balance', e.target.value)
+                            setManagement(mng => (
+                              [
+                                ...mng.filter(tm => tm.id != mng[0].id),
+                                { ...mng[0], balance: e.target.value }
+                              ]
+                            ))
+                          } else {
+                            setValue('balance', 1)
+                            setManagement(mng => (
+                              [
+                                ...mng.filter(tm => tm.id != mng[0].id),
+                                { ...mng[0], balance: 1 }
+                              ]
+                            ))
+                          }
+                        }}
+                      />
+                    </Grid>
+                  </Stack>
+                </Card>
+              </Grid>
+              <Grid item paddingTop={1} paddingBottom={1} padding={{ lg: 1, md: 1, }} xs={12} md={4} lg={2}>
                 <Card sx={{ marginTop: 1, background: '#2B2440', height: '100%' }} md={3}>
                   <Grid container sx={{ height: '50%' }} direction="row">
                     <Grid item xs={3} lg={7} sx={{ background: '#1db4a2', display: 'flex' }} alignItems="center" justifyContent="center" padding={0.5}>
@@ -254,13 +254,13 @@ const Reports = () => {
                     </Grid>
                     <Grid sx={{ width: '100%', height: '100%', display: 'flex' }}>
                       <Typography variant="caption" sx={{ marginTop: 1, fontSize: 15, color: '#4a8d8e', fontWeight: 'bold', justifyContent: 'center' }} color="primary.muted">
-                        {new Intl.NumberFormat('pt-BR', {style: 'currency', currencyDisplay:'code', currency: 'USD' }).format(calculated?.calculatedProfit).replace('USD', '$')}
+                        {new Intl.NumberFormat('pt-BR', { style: 'currency', currencyDisplay: 'code', currency: 'USD' }).format(calculated?.calculatedProfit).replace('USD', '$')}
                       </Typography>
                     </Grid>
                   </Stack>
                 </Card>
               </Grid>
-              <Grid item paddingTop={1} paddingBottom={1} padding={{lg:1, md:1 }} paddingLeft={{ xs:1, md:0}} xs={6} md={4} lg={2}>
+              <Grid item paddingTop={1} paddingBottom={1} padding={{ lg: 1, md: 1 }} paddingLeft={{ xs: 1, md: 0 }} xs={6} md={4} lg={2}>
                 <Card sx={{ marginTop: 1, background: '#2B2440', height: '100%' }} md={3}>
                   <Stack alignItems="flex-start" justifyContent={'center'} sx={{ height: '100%' }} padding={1}>
                     <Grid sx={{ width: "100%" }} direction="row" alignItems="center">
@@ -270,13 +270,13 @@ const Reports = () => {
                     </Grid>
                     <Grid sx={{ width: '100%', height: '100%', display: 'flex' }}>
                       <Typography variant="calculatedLoss" sx={{ marginTop: 1, fontSize: 15, color: '#995e73', fontWeight: 'bold', justifyContent: 'center' }} color="primary.muted">
-                        {new Intl.NumberFormat('pt-BR', {style: 'currency', currencyDisplay:'code', currency: 'USD' }).format(calculated?.calculatedLoss).replace('USD', '$')}
+                        {new Intl.NumberFormat('pt-BR', { style: 'currency', currencyDisplay: 'code', currency: 'USD' }).format(calculated?.calculatedLoss).replace('USD', '$')}
                       </Typography>
                     </Grid>
                   </Stack>
                 </Card>
               </Grid>
-              <Grid item paddingTop={1} paddingBottom={1} padding={{lg:1, md:1, }} xs={12} md={4} lg={2}>
+              <Grid item paddingTop={1} paddingBottom={1} padding={{ lg: 1, md: 1, }} xs={12} md={4} lg={2}>
                 <Card sx={{ marginTop: 1, background: '#2B2440', height: '100%' }} md={3}>
                   <Stack alignItems="flex-start" justifyContent={'center'} sx={{ height: '100%' }} padding={1}>
                     <Grid sx={{ width: "100%" }} direction="row" alignItems="center">
@@ -284,25 +284,25 @@ const Reports = () => {
                         Confirmação
                       </Typography>
                     </Grid>
-                    <Stack sx={{ width: '100%', height: '100%'}} justifyContent="flex-end">
-                      {saved ? 
-                        <Button disabled sx={{ width: '100%', background: '#555', color:'#999', borderRadius: 17 }}>
+                    <Stack sx={{ width: '100%', height: '100%' }} justifyContent="flex-end">
+                      {saved ?
+                        <Button disabled sx={{ width: '100%', background: '#555', color: '#999', borderRadius: 17 }}>
                           <Card sx={{ width: '100%', background: '#555', paddingTop: 0.5, paddingBottom: 0.5 }}>
                             Confirmado
                           </Card>
                         </Button>
-                      :<Button onClick={saveManagement} sx={{ width: '100%', background: '#1db4a2', borderRadius: 17 }}>
-                        <Card sx={{ width: '100%', background: '#1db4a2', paddingTop: 0.5, paddingBottom: 0.5 }}>
-                          Salvar
-                        </Card>
-                      </Button>}
+                        : <Button onClick={saveManagement} sx={{ width: '100%', background: '#1db4a2', borderRadius: 17 }}>
+                          <Card sx={{ width: '100%', background: '#1db4a2', paddingTop: 0.5, paddingBottom: 0.5 }}>
+                            Salvar
+                          </Card>
+                        </Button>}
                     </Stack>
                   </Stack>
                 </Card>
               </Grid>
               <Grid item paddingTop={1} paddingBottom={1} xs={12} md={4} lg={2}>
-                <Card sx={{ marginTop:1, paddingRight:1, paddingLeft:1, background: '#2B2440', height: '100%' }} md={3}>
-                  <Stack sx={{ width:'100%', height:'100%'}} justifyContent="center">
+                <Card sx={{ marginTop: 1, paddingRight: 1, paddingLeft: 1, background: '#2B2440', height: '100%' }} md={3}>
+                  <Stack sx={{ width: '100%', height: '100%' }} justifyContent="center">
                     <Button sx={{ width: '100%' }} onClick={() => {
                       let start = startDate.format('DD/MM/YYYY')
                       let end = endDate.format('DD/MM/YYYY')
@@ -311,7 +311,7 @@ const Reports = () => {
                       let file = `https://api.botpremium.com.br/api/history/excel/?start=${start}&end=${end}`;
 
                       let headers = new Headers();
-                      headers.append('Authorization', 'Token '+localStorage.getItem('accessToken'));
+                      headers.append('Authorization', 'Token ' + localStorage.getItem('accessToken'));
 
                       fetch(file, { headers })
                         .then(response => response.blob())
@@ -331,9 +331,9 @@ const Reports = () => {
                     </Button>
                   </Stack>
                 </Card>
-            </Grid>
-            <Grid item xs={12} md={12} lg={12}>
-                <Card sx={{ marginTop: 1, padding:1, background: '#2B2440', }}>
+              </Grid>
+              <Grid item xs={12} md={12} lg={12}>
+                <Card sx={{ marginTop: 1, padding: 1, background: '#2B2440', }}>
                   <IconButton
                     expand={expanded}
                     onClick={() => setExpanded(exp => !exp)}
@@ -343,7 +343,7 @@ const Reports = () => {
                     <ExpandMoreIcon />
                   </IconButton>
                   <Collapse in={expanded} timeout="auto">
-                    <Grid sx={{ paddingTop:1, paddingBottom:1}}>
+                    <Grid sx={{ paddingTop: 1, paddingBottom: 1 }}>
                       <DatePicker
                         sx={{ maxHeight: '30px' }}
                         disableFuture
@@ -372,16 +372,16 @@ const Reports = () => {
                       />
                     </Grid>
                   </Collapse>
-              </Card>
-              <Card sx={{ width:'100%', marginTop: 1, background: '#2B2440', height: '500px' }} md={3}>
-                <Scrollbars style={{ width:'100%', height: '500px'}}>
-                  <ReportsTable data={management} updateField={updateField} />
-                </Scrollbars>
-              </Card>
+                </Card>
+                <Card sx={{ width: '100%', marginTop: 1, background: '#2B2440', height: '500px' }} md={3}>
+                  <Scrollbars style={{ width: '100%', height: '500px' }}>
+                    <ReportsTable data={management} updateField={updateField} />
+                  </Scrollbars>
+                </Card>
+              </Grid>
             </Grid>
-          </Grid>
-        </Stack>
-      </Grid>
+          </Stack>
+        </Grid>
       </LocalizationProvider>
     </Layout>
   );

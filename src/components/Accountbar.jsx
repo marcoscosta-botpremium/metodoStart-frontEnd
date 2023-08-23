@@ -53,15 +53,16 @@ export const Accountbar = (props) => {
     bots,
     balance,
     setTrades,
+    setVirtualOpen,
+    virtualOpen,
+    realOpen,
+    setRealOpen
   } = useContext(BotContext);
-
-  const [virtualOpen, setVirtualOpen] = useState(false);
-  const [realOpen, setRealOpen] = useState(false);
   return (
     <Stack
       sx={{
         marginX: 'auto',
-        width: { xs: '85%', md: '214px' },
+        width: { xs: '85%', md: '100%', lg: '100%' },
         height: { xs: '88%', md: '80vh' },
       }}
       alignItems="center"
@@ -124,166 +125,6 @@ export const Accountbar = (props) => {
             textAlign={'center'}
             justifyContent="center"
           >
-            <Stack sx={{ margin: 3, width: '100%' }} direction="row">
-              <Button
-                onClick={() => {
-                  setRealOpen(true);
-                }}
-                sx={{
-                  minHeight: 37,
-                  background: (
-                    localStorage.bootTrue == 'true'
-                      ? !isRealAccount()
-                      : isRealAccount()
-                  )
-                    ? 'linear-gradient(0.25turn, #4BD2F1, #1097F3);'
-                    : '#2b2440',
-                  width: '50%',
-                  fontSize: 14,
-                  borderTopRightRadius: 0,
-                  borderBottomRightRadius: 0,
-                  borderBottomLeftRadius: 70,
-                  borderTopLeftRadius: 70,
-                }}
-              >
-                Real
-              </Button>
-
-              <Button
-                onClick={() => {
-                  setVirtualOpen(true);
-                }}
-                sx={{
-                  width: '50%',
-                  minHeight: 37,
-                  background: (
-                    localStorage.bootTrue == 'true'
-                      ? isRealAccount()
-                      : !isRealAccount()
-                  )
-                    ? 'linear-gradient(0.25turn,  #4BD2F1, #1097F3);'
-                    : '#2b2440',
-                  fontSize: 14,
-                  borderTopLeftRadius: 0,
-                  borderBottomLeftRadius: 0,
-                  borderBottomRightRadius: 70,
-                  borderTopRightRadius: 70,
-                }}
-              >
-                Virtual
-              </Button>
-            </Stack>
-            <Sure
-              open={virtualOpen}
-              setOpen={setVirtualOpen}
-              onAccept={() => {
-                if (localStorage.bootTrue === 'true') {
-                  // eslint-disable-next-line array-callback-return
-                  tokenList.map((item, index) => {
-                    if (!item.loginInfo.is_virtual) {
-                      if (index === 1) {
-                        setTokenList(tokenList.reverse());
-                      }
-                      localStorage.setItem('activeToken', item.token);
-                      setActiveAccount(item);
-                    }
-                  });
-                  updateTable();
-                  globalObserver.emit('summary.clear');
-                  setTrades([]);
-                } else {
-                  // eslint-disable-next-line array-callback-return
-                  tokenList.map((item, index) => {
-                    if (item.loginInfo.is_virtual) {
-                      if (index === 1) {
-                        setTokenList(tokenList.reverse());
-                      }
-                      localStorage.setItem('activeToken', item.token);
-                      setActiveAccount(item);
-                    }
-                  });
-                  updateTable();
-                  globalObserver.emit('summary.clear');
-                  setTrades([]);
-                }
-                setVirtualOpen(false);
-              }}
-            />
-            <Sure
-              open={realOpen}
-              setOpen={setRealOpen}
-              onAccept={() => {
-                if (localStorage.bootTrue == 'true') {
-                  tokenList.map((item, index) => {
-                    if (item.loginInfo.is_virtual) {
-                      if (index == 1) {
-                        setTokenList(tokenList.reverse());
-                      }
-                      localStorage.setItem('activeToken', item.token);
-                      setActiveAccount(item);
-                    }
-                  });
-                  updateTable();
-                  globalObserver.emit('summary.clear');
-                  setTrades([]);
-                } else {
-                  tokenList.map((item, index) => {
-                    if (!item.loginInfo.is_virtual) {
-                      if (index == 1) {
-                        setTokenList(tokenList.reverse());
-                      }
-                      localStorage.setItem('activeToken', item.token);
-                      setActiveAccount(item);
-                    }
-                  });
-                  updateTable();
-                  globalObserver.emit('summary.clear');
-                  setTrades([]);
-                }
-                setRealOpen(false);
-              }}
-            />
-            <Card
-              sx={{
-                marginTop: 1,
-                width: '100%',
-                paddingY: 1,
-                paddingX: 2,
-                background: '#2b2440',
-              }}
-            >
-              <Grid container alignItems="row">
-                <Grid md={11} xs={11} justifyContent="center">
-                  <Typography
-                    sx={{
-                      textAlign: 'start',
-                      fontSize: 21,
-                      fontWeight: 'bold',
-                    }}
-                  >
-                    {loading ? (
-                      <CircularProgress size={21} color="secondary" />
-                    ) : visible ? (
-                      `${String(balance.balance?.toFixed(2)).replace(
-                        '.',
-                        ','
-                      )} ${balance.currency}`
-                    ) : (
-                      '******'
-                    )}
-                  </Typography>
-                </Grid>
-                <Grid md={1} xs={1} justifyContent="center">
-                  <ToggleIcon
-                    style={{ height: '100%' }}
-                    onClick={() => setVisible((visible) => !visible)}
-                    on={visible}
-                    onIcon={<Visibility />}
-                    offIcon={<VisibilityOff />}
-                  />
-                </Grid>
-              </Grid>
-            </Card>
             <Button
               sx={{ margin: 1 }}
               onClick={() => {
@@ -294,9 +135,9 @@ export const Accountbar = (props) => {
                 setConnected(false);
               }}
             >
-              Sair da binary
+              Sair da corretora
             </Button>
-            <Stack
+            {/* <Stack
               sx={{ marginTop: 2, width: '100%' }}
               alignItems="flex-end"
               direction="row"
@@ -309,9 +150,9 @@ export const Accountbar = (props) => {
                 Em alta
               </Typography>
               {window.location.pathname == '/robot' &&
-              !blockly &&
-              !isConnected &&
-              !balance?.currency ? (
+                !blockly &&
+                !isConnected &&
+                !balance?.currency ? (
                 <CircularProgress color="secondary" />
               ) : (
                 <Switch
@@ -340,10 +181,10 @@ export const Accountbar = (props) => {
                   }}
                 />
               )}
-            </Stack>
+            </Stack> */}
 
             <Stack sx={{ width: '100%', borderRadius: 50, marginTop: 2 }}>
-              {bots.map((item, index) => (
+              {/* {bots.map((item, index) => (
                 <Button
                   sx={{ width: '100%', marginBottom: 1 }}
                   onClick={() => {
@@ -355,7 +196,7 @@ export const Accountbar = (props) => {
                       width: '100%',
                       background:
                         bot?.id == item?.id
-                          ? 'linear-gradient(0.25turn, #4BD2F1, #1097F3);'
+                          ? 'linear-gradient(0.25turn, #0D953C, #1AE363);'
                           : '#2b2440',
                     }}
                   >
@@ -370,9 +211,9 @@ export const Accountbar = (props) => {
                     </Grid>
                   </Card>
                 </Button>
-              ))}
+              ))} */}
 
-              <Button
+              {/* <Button
                 sx={{
                   width: '100%',
                   marginTop: 1,
@@ -380,12 +221,12 @@ export const Accountbar = (props) => {
                   borderRadius: 4,
                   fontSize: 14,
                   fontWeight: 'bold',
-                  background: 'linear-gradient(0.25turn,  #4BD2F1, #1097F3);',
+                  background: 'linear-gradient(0.25turn, #0D953C, #1AE363);',
                 }}
                 onClick={() => navigate('/robot')}
               >
                 Status do Robô
-              </Button>
+              </Button> */}
             </Stack>
           </Stack>
         ) : (
@@ -403,7 +244,7 @@ export const Accountbar = (props) => {
                 borderRadius: 8,
                 fontSize: 12,
                 fontWeight: 'bold',
-                background: 'linear-gradient(0.25turn,  #4BD2F1, #1097F3);',
+                background: 'linear-gradient(0.25turn, #0D953C, #1AE363);',
               }}
               onClick={() => {
                 saveBeforeUnload();

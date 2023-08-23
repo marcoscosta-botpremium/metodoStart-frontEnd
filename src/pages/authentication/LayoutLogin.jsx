@@ -9,7 +9,7 @@ const AuthenticationLayout = (props) => {
 
   return (
     <Grid container height="100%">
-      <Grid container style={{ width:'100%', height:'100%', position:'fixed', zIndex:100}}>
+      <Grid container style={{ width: '100%', height: '100%', position: 'fixed', zIndex: 100 }}>
         <Grid item md={12} xs={12} order={1} >
           <Stack alignItems="center" justifyContent="center" height="100%">
             <Box

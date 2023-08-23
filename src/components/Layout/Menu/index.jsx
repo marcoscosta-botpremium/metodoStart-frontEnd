@@ -30,7 +30,7 @@ function Menu({ title }) {
         whileTap={{
           scale: 0.9,
         }}
-        onClick={() => navigate('/operation')}
+        onClick={() => navigate('/robot')}
       >
         <Img src={imgOperacoes} alt="operacoes" />
         <Txt>Operações</Txt>
@@ -45,7 +45,7 @@ function Menu({ title }) {
         onClick={() => navigate('/upgrades')}
       >
         <Img src={imgUpgrade} alt="upgrade" />
-        <Txt>Upgrades</Txt>
+        <Txt>Atualizações</Txt>
       </Card>
     </Container>
   );

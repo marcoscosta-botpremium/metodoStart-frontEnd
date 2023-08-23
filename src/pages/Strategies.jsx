@@ -81,7 +81,7 @@ const Strategies = () => {
                   </Typography>
                   <Scrollbars style={{ width: '100%', height: '550px' }}>
                     {bots
-                      .sort(function (a, b) {
+                      .sort(function(a, b) {
                         if (a.name < b.name) {
                           return -1;
                         }
@@ -447,7 +447,7 @@ const Strategies = () => {
                                   color:'white'
                                 }}
                                 name="simple-controlled"
-                                value={value[item.id] || item.stars}                             
+                                value={value[item.id] || item.stars}
                                 onChange={(event, newValue) => {
                                   api.setRating(item.id, newValue).then(data => {
                                     if(data.success){

@@ -10,6 +10,7 @@ import {
   ItemTutorials,
   ListTutorials,
   VideoContainer,
+  Scroll
 } from './styles';
 
 const Tutorials = () => {
@@ -41,7 +42,7 @@ const Tutorials = () => {
   useEffect(() => {
     if (selectedVideo) {
       const elementText = document.querySelector('#describe');
-      elementText.innerHTML = selectedVideo.describe;
+      elementText.innerHTML = selectedVideo?.describe;
     }
   }, [selectedVideo]);
 
@@ -49,15 +50,15 @@ const Tutorials = () => {
     <Layout title="Aulas">
       <Container variants={variants.opacity} animate="visible" initial="hidden">
         <VideoContainer>
-          {selectedVideo.link && (
+          {selectedVideo?.link && (
             <Vimeo
-              video={selectedVideo.link}
+              video={selectedVideo?.link}
               showTitle={false}
               showPortrait={false}
             />
           )}
 
-          <SubTitle>{selectedVideo.title}</SubTitle>
+          <SubTitle>{selectedVideo?.title}</SubTitle>
           <Text id="describe"></Text>
         </VideoContainer>
 
@@ -65,7 +66,7 @@ const Tutorials = () => {
           {tutorials.map((item, index) => (
             <ItemTutorials
               key={index}
-              active={item.link === selectedVideo.link}
+              active={item.link === selectedVideo?.link}
               variants={variants.itemOpacity}
               onClick={() => setSelectedVideo(item)}
               whileTap={{

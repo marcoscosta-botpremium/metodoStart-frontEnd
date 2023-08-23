@@ -73,8 +73,7 @@ export default class DataCollection {
     };
 
     fetch(
-      `${this.endpoint}/${this.runId}/${transactionId}/${
-        this.runStart
+      `${this.endpoint}/${this.runId}/${transactionId}/${this.runStart
       }/${this.getHash(this.strategyContent)}`,
       {
         ...(this.shouldPostXml ? getPayload() : {}),
@@ -147,4 +146,4 @@ export default class DataCollection {
   };
 }
 
-export const createDataStore = (workspace) => new DataCollection(workspace);
+// export const createDataStore = (workspace) => new DataCollection(workspace);

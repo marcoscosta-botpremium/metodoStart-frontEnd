@@ -43,7 +43,8 @@ export const Card = styled(motion.div)`
   flex-direction: column;
 
   border-radius: 8px;
-  background: ${({ theme }) => theme.colors.backgroundDark};
+  background: ${({ image }) => `url(${image})`} no-repeat center;
+  background-size: cover;
 
   .texts {
     display: flex;
@@ -74,8 +75,8 @@ export const TextContainer = styled(motion.div)`
     background: ${({ theme }) => theme.colors.green};
 
     ${({ type }) =>
-      type == 1 &&
-      css`
+    type == 1 &&
+    css`
         background: ${({ theme }) => theme.colors.red};
       `};
   }

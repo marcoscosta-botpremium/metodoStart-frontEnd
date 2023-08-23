@@ -11,8 +11,8 @@ export const theme = {
     black: '#3B3A3B',
     blue: '#1097F3',
 
-    background: '#221C33',
-    backgroundDark: '#1E192D',
-    backgroundLight: '#2B2440',
+    background: '#010101',
+    backgroundDark: '#2f2d37',
+    backgroundLight: '#2F2D37',
   },
 };

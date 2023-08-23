@@ -13,11 +13,11 @@ const Calculator = () => {
   const [userInfo, setUser] = useState({})
   const [simulation, setSimulation] = useState([])
   const [settings, setSettings] = useState({
-    balance:0,
+    balance: 0,
     entrance: 1,
     stopWin: 5,
     stopLoss: 5,
-    bot: (bots.length) ? bots[0]: {}
+    bot: (bots.length) ? bots[0] : {}
   })
 
   const setValue = (field, value) => {
@@ -26,30 +26,30 @@ const Calculator = () => {
       [field]: value
     })
   }
-  const calculateMartingale = (balance, entryValue, bot) => { 
+  const calculateMartingale = (balance, entryValue, bot) => {
     let stopLoss = (settings?.balance * settings?.stopLoss / 100) || 0;
     let currentBet = Number(entryValue);
     let bl = Number(balance);
     let totalLoss = 0;
     let round = 0;
     const results = [];
-    while ((!stopLoss) ? false:Math.abs(stopLoss) > Math.abs(totalLoss)) {
-      let customIter = bot.gales.find(o => o.iteration === round+1);
-      if(customIter){
-        if(customIter?.multiplier) {
+    while ((!stopLoss) ? false : Math.abs(stopLoss) > Math.abs(totalLoss)) {
+      let customIter = bot.gales.find(o => o.iteration === round + 1);
+      if (customIter) {
+        if (customIter?.multiplier) {
           bot.multiplier = customIter?.multiplier
         }
-        if(customIter?.lossPayout) {
+        if (customIter?.lossPayout) {
           bot.lossPayout = customIter?.lossPayout
         }
-        if(customIter?.payout) {
+        if (customIter?.payout) {
           bot.payout = customIter?.payout
         }
       }
       let payout = (round > 0) ? Number(bot?.lossPayout) : Number(bot?.payout)
       let gain = (currentBet * (payout / 100));
       let loss = -(currentBet);
-      totalLoss  += Number(loss);
+      totalLoss += Number(loss);
       bl += Number(loss);
       round++;
 
@@ -62,17 +62,17 @@ const Calculator = () => {
         balance: bl.toFixed(2)
       });
       currentBet = currentBet + (currentBet * Number(bot.multiplier));
-      
+
     }
     setSimulation(results);
   };
 
 
   useEffect(() => {
-    if(settings?.entrance > 0){
+    if (settings?.entrance > 0) {
       if (settings.balance && settings.entrance && settings.stopWin && settings.stopLoss && settings.bot) {
         calculateMartingale(settings.balance, settings.entrance, settings.bot)
-      }else{
+      } else {
         setSimulation([])
       }
     }
@@ -88,7 +88,7 @@ const Calculator = () => {
       localStorage.setItem('userInfo', JSON.stringify(data?.user))
     })
   }, [])
-  
+
   return (
     <Layout
       title="Mercado"
@@ -96,13 +96,13 @@ const Calculator = () => {
       subscription={userInfo.subscription}
     >
       <Grid item md={12} xs={12} order={1}>
-        <ForexSlider key={4}/>
+        <ForexSlider key={4} />
         <Stack alignItems="flex-start" spacing={2}>
           <Typography variant="h5" sx={{ marginTop: 5, fontWeight: 'bold' }}>
             Calculadora
           </Typography>
-          <Grid container sx={{ width:'100%'}} justifyContent="space-between" direction="row">
-            <Grid item paddingTop={1} paddingBottom={1} paddingRight={{xs:1, md:0, lg:0}} xs={6} md={6} lg={2}>
+          <Grid container sx={{ width: '100%' }} justifyContent="space-between" direction="row">
+            <Grid item paddingTop={1} paddingBottom={1} paddingRight={{ xs: 1, md: 0, lg: 0 }} xs={6} md={6} lg={2}>
               <Card sx={{ marginTop: 1, background: '#2B2440', height: '100%' }} md={3}>
                 <Stack alignItems="flex-start" justifyContent={'center'} sx={{ height: '100%' }} padding={1}>
                   <Grid sx={{ width: "100%" }} direction="row" alignItems="center">
@@ -118,7 +118,7 @@ const Calculator = () => {
                         "& input::placeholder": {
                           fontSize: 13
                         },
-                        input:{
+                        input: {
                           fontWeight: 'bold'
                         }
                       }}
@@ -136,7 +136,7 @@ const Calculator = () => {
                 </Stack>
               </Card>
             </Grid>
-            <Grid item paddingTop={1} paddingBottom={1} paddingLeft={{ xs:1 }} padding={{lg:1, md:1 }} paddingRight={{md:0}} xs={6} md={6} lg={2}>
+            <Grid item paddingTop={1} paddingBottom={1} paddingLeft={{ xs: 1 }} padding={{ lg: 1, md: 1 }} paddingRight={{ md: 0 }} xs={6} md={6} lg={2}>
               <Card sx={{ marginTop: 1, background: '#2B2440', height: '100%' }} md={3}>
                 <Stack alignItems="flex-start" justifyContent={'center'} sx={{ height: '100%' }} padding={1}>
                   <Grid sx={{ width: "100%" }} direction="row" alignItems="center">
@@ -172,8 +172,8 @@ const Calculator = () => {
               </Card>
             </Grid>
             <Grid item paddingTop={1} paddingBottom={1} xs={12} md={12} lg={2}>
-              <Card sx={{ marginTop: 1, background: '#2B2440', height:'100%' }} md={3}>
-                <Grid container sx={{ height:'50%'}} direction="row">
+              <Card sx={{ marginTop: 1, background: '#2B2440', height: '100%' }} md={3}>
+                <Grid container sx={{ height: '50%' }} direction="row">
                   <Grid item xs={3} lg={7} sx={{ background: '#1db4a2', display: 'flex' }} alignItems="center" justifyContent="center" padding={0.5}>
                     <Typography variant="caption" sx={{ fontSize: 13, color: 'white', fontWeight: 'bold', justifyContent: 'center' }} color="primary.muted">
                       STOP WIN
@@ -204,8 +204,8 @@ const Calculator = () => {
                     />
                   </Grid>
                 </Grid>
-            <Grid container sx={{ height: '50%' }} direction="row">
-                  <Grid item xs={3} lg={7} sx={{ background: '#da4e63', display:'flex' }} alignItems="center" justifyContent="center" padding={0.5}>
+                <Grid container sx={{ height: '50%' }} direction="row">
+                  <Grid item xs={3} lg={7} sx={{ background: '#da4e63', display: 'flex' }} alignItems="center" justifyContent="center" padding={0.5}>
                     <Typography variant="caption" sx={{ fontSize: 13, color: 'white', fontWeight: 'bold', justifyContent: 'center' }} color="primary.muted">
                       STOP LOSS
                     </Typography>
@@ -219,7 +219,7 @@ const Calculator = () => {
                           fontSize: 13
                         },
                         fontWeight: 'bold',
-                        input:{
+                        input: {
                           color: '#777',
                           textAlign: 'center'
                         }
@@ -237,32 +237,32 @@ const Calculator = () => {
                 </Grid>
               </Card>
             </Grid>
-            <Grid item paddingTop={1} paddingBottom={1} paddingLeft={{lg:1}} paddingRight={{xs:1, md:1, lg:1}} xs={6} md={4} lg={2}>
-              <Card sx={{ marginTop: 1, background: '#2B2440', height:'100%'  }} md={3}>
-                <Stack alignItems="flex-start" justifyContent={'center'} sx={{ height:'100%'}} padding={1}>
-                  <Grid sx={{ width:"100%" }} direction="row" alignItems="center">
+            <Grid item paddingTop={1} paddingBottom={1} paddingLeft={{ lg: 1 }} paddingRight={{ xs: 1, md: 1, lg: 1 }} xs={6} md={4} lg={2}>
+              <Card sx={{ marginTop: 1, background: '#2B2440', height: '100%' }} md={3}>
+                <Stack alignItems="flex-start" justifyContent={'center'} sx={{ height: '100%' }} padding={1}>
+                  <Grid sx={{ width: "100%" }} direction="row" alignItems="center">
                     <Typography variant="caption" sx={{ fontSize: 14, color: 'white', fontWeight: 'bold', justifyContent: 'center' }} color="primary.muted">
                       Alvo de Lucro
                     </Typography>
                   </Grid>
-                  <Grid sx={{ width:'100%', height:'100%', display:'flex'}}>
-                    <Typography variant="caption" sx={{ marginTop:1, fontSize: 15, color: '#4a8d8e', fontWeight: 'bold', justifyContent: 'center' }} color="primary.muted">
+                  <Grid sx={{ width: '100%', height: '100%', display: 'flex' }}>
+                    <Typography variant="caption" sx={{ marginTop: 1, fontSize: 15, color: '#4a8d8e', fontWeight: 'bold', justifyContent: 'center' }} color="primary.muted">
                       U$ {((settings?.balance * settings?.stopWin / 100) || 0).toFixed(2)}
                     </Typography>
                   </Grid>
                 </Stack>
               </Card>
             </Grid>
-            <Grid item paddingTop={1} paddingBottom={1} paddingRight={{lg:1, md:1}} paddingLeft={{xs: 1, md:0, lg:0}} xs={6} md={4} lg={2}>
-              <Card sx={{ marginTop: 1, background: '#2B2440', height:'100%'  }} md={3}>
-                <Stack alignItems="flex-start" justifyContent={'center'} sx={{ height:'100%'}} padding={1}>
-                  <Grid sx={{ width:"100%" }} direction="row" alignItems="center">
+            <Grid item paddingTop={1} paddingBottom={1} paddingRight={{ lg: 1, md: 1 }} paddingLeft={{ xs: 1, md: 0, lg: 0 }} xs={6} md={4} lg={2}>
+              <Card sx={{ marginTop: 1, background: '#2B2440', height: '100%' }} md={3}>
+                <Stack alignItems="flex-start" justifyContent={'center'} sx={{ height: '100%' }} padding={1}>
+                  <Grid sx={{ width: "100%" }} direction="row" alignItems="center">
                     <Typography variant="caption" sx={{ fontSize: 14, color: 'white', fontWeight: 'bold', justifyContent: 'center' }} color="primary.muted">
                       Limite de Perca
                     </Typography>
                   </Grid>
-                  <Grid sx={{ width:'100%', height:'100%', display:'flex'}}>
-                    <Typography variant="caption" sx={{ marginTop:1, fontSize: 15, color: '#995e73', fontWeight: 'bold', justifyContent: 'center' }} color="primary.muted">
+                  <Grid sx={{ width: '100%', height: '100%', display: 'flex' }}>
+                    <Typography variant="caption" sx={{ marginTop: 1, fontSize: 15, color: '#995e73', fontWeight: 'bold', justifyContent: 'center' }} color="primary.muted">
                       U$ {((settings?.balance * settings?.stopLoss / 100) || 0).toFixed(2)}
                     </Typography>
                   </Grid>
@@ -270,13 +270,13 @@ const Calculator = () => {
               </Card>
             </Grid>
             <Grid item paddingTop={1} paddingBottom={1} xs={12} md={4} lg={2}>
-               <Card sx={{ marginTop: 1, background: '#2B2440', height:'100%' , width:'100%' }}>
-                  <Stack alignItems="flex-start" justifyContent={'center'} padding={1}>
-                    <Stack direction="row">
-                      <Typography variant="caption" sx={{ fontSize: 14, color: 'white', fontWeight: 'bold', justifyContent: 'center' }} color="primary.muted">
-                        Robô
-                      </Typography>
-                    </Stack>
+              <Card sx={{ marginTop: 1, background: '#2B2440', height: '100%', width: '100%' }}>
+                <Stack alignItems="flex-start" justifyContent={'center'} padding={1}>
+                  <Stack direction="row">
+                    <Typography variant="caption" sx={{ fontSize: 14, color: 'white', fontWeight: 'bold', justifyContent: 'center' }} color="primary.muted">
+                      Robô
+                    </Typography>
+                  </Stack>
                   {(bots.length) ? <Select
                     sx={{ width: '100%', fontSize: 14 }}
                     padding={0}
@@ -294,13 +294,13 @@ const Calculator = () => {
                       </MenuItem>
                     ))}
                   </Select> : null}
-                  </Stack>
+                </Stack>
               </Card>
             </Grid>
             <Grid item xs={12} sm={12} md={12} lg={12}>
-              <Card sx={{ marginTop: 1, background: '#2B2440', height:'100%' , height:'500px' }} md={3}>  
+              <Card sx={{ marginTop: 1, background: '#2B2440', height: '100%', height: '500px' }} md={3}>
                 <Scrollbars style={{ width: '100%', height: '500px' }}>
-                  <CalculatorTable simulation={simulation}/>
+                  <CalculatorTable simulation={simulation} />
                 </Scrollbars>
               </Card>
             </Grid>

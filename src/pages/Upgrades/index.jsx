@@ -4,10 +4,12 @@ import Layout from '../../components/Layout/index';
 import * as api from '../../services/api';
 import { Row, Text } from '../../styles/global';
 import { variants } from '../../utils/motionConfig';
-import { Card, ColumnText, Container, Price, TextContainer } from './styles';
+import { Card, Container, Subtitle, Description } from './styles';
+import Slider from '../../components/Slider'
+import { Grid } from '@mui/material';
 
 function Upgrades() {
-  const [updrades, setUpdrades] = useState([]);
+  const [upgrades, setUpgrades] = useState([]);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -16,13 +18,13 @@ function Upgrades() {
       try {
         const response = await api.getUpgrades(controller);
 
-        response.plans.forEach(
-          (plan) => (plan.options = plan.values.split(';'))
-        );
+        // response.plans.forEach(
+        //   (plan) => (plan.options = plan.values.split(';'))
+        // );
 
         response?.plans.reverse();
 
-        setUpdrades(response?.plans);
+        setUpgrades(response?.plans);
       } catch (error) {
         // console.log(error);
       }
@@ -37,36 +39,35 @@ function Upgrades() {
 
   return (
     <Layout title="Upgrades">
-      <Container variants={variants.opacity} animate="visible" initial="hidden">
-        <Row>
-          {updrades.map((item, index) => (
-            <Card key={index} variants={variants.itemSlide}>
-              <Row>
-                <span className="value">{item.title}</span>
-                {/* {item.offer && <span className="offer">{item.offer}</span>} */}
-              </Row>
+      <Grid sx={{
+        display: { sm: 'block', xs: 'block', md: 'none', lg: 'none', xl: 'none' },
+      }}>
+        <Row
+          style={{ justifyContent: 'flex-start' }}>
+          {upgrades?.map((item, index) => (
+            <Card key={index} variants={variants.itemSlide} image={item?.image}>
+              <Subtitle>
+                {item?.title}
+              </Subtitle>
 
-              <Price>
-                {item.price},00 <span>/mês</span>{' '}
-              </Price>
+              <Description>
+                {item?.description}
+              </Description>
 
-              <ColumnText>
-                {item.options.map((option) => (
-                  <TextContainer>
-                    <div></div>
-                    <Text>{option}</Text>
-                  </TextContainer>
-                ))}
-              </ColumnText>
-
-              <Button onClick={() => window.open(item.link)}>
-                Quero Assinar
+              <Button style={{ marginTop: 7, width: '100%' }} onClick={() => window.open(item?.link)}>
+                {item?.buttonName}
               </Button>
             </Card>
           ))}
         </Row>
-      </Container>
-    </Layout>
+      </Grid>
+      <Grid sx={{
+        display: { sm: 'none', xs: 'none', md: 'block', lg: 'block', xl: 'block' },
+        width: { xl: '80vw', lg: '80vw', md: '75vw', sm: '97vw', xs: '95vw' }
+      }}>
+        <Slider items={upgrades} />
+      </Grid>
+    </Layout >
   );
 }
 

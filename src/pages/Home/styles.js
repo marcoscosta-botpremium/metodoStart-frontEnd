@@ -1,8 +1,8 @@
 import { motion } from 'framer-motion';
 import styled, { css } from 'styled-components';
-import imgAulas from '../../assets/aulas.jpeg';
-import imgOperacoes from '../../assets/operacoes.jpeg';
-import imgUpgrade from '../../assets/upgrades.jpeg';
+import imgAulas from '../../assets/1.png';
+import imgOperacoes from '../../assets/2.png';
+import imgUpgrade from '../../assets/3.png';
 import { breakPoint, toRem } from '../../styles/global';
 
 export const Container = styled(motion.div)`
@@ -22,15 +22,30 @@ export const Container = styled(motion.div)`
   }
 `;
 
+export const Title = styled(motion.h1)`
+  display: flex;
+
+  align-items: flex-end;
+  margin-left: ${toRem(20)};
+  margin-bottom: ${toRem(20)};
+
+  font-size: ${toRem(40)};
+  font-weight: 400;
+
+  @media (max-width: ${breakPoint.mobileLg}) {
+    height: 100%;
+    justify-content: center;
+  }
+`;
+
+
 export const Card = styled(motion.div)`
   display: flex;
   width: ${toRem(330)};
   height: ${toRem(500)};
 
-  padding-bottom: ${toRem(50)};
-
   align-items: flex-end;
-  justify-content: center;
+  justify-content: flex-start;
 
   border-radius: 8px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px,
@@ -60,8 +75,8 @@ export const Card = styled(motion.div)`
   background-size: cover;
 
   @media (max-width: ${breakPoint.mobileLg}) {
-    width: 100%;
-    height: ${toRem(330)};
+    width: 90%;
+    height: ${toRem(280)};
 
     border-radius: 20px;
 

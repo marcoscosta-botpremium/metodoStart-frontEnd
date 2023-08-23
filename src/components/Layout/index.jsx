@@ -13,7 +13,7 @@ const Layout = ({ title, noMenu, children }) => {
 
   return (
     <Container>
-      <Content variants={variants.opacity} animate="visible" initial="hidden">
+      <Content>
         <Left>
           <Flex>
             <Stack
@@ -45,7 +45,7 @@ const Layout = ({ title, noMenu, children }) => {
         </Left>
 
         <Rigth>
-          <Side sx={{ display: { xs: 'none', md: 'block' } }} />
+          <Side sx={{ display: { xs: 'none', md: 'block' }, width: '100%' }} />
         </Rigth>
       </Content>
     </Container>

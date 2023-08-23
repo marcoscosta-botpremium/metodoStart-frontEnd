@@ -21,36 +21,36 @@ const Operation = () => {
       try {
         const response = await api.getBots(controller);
 
-        response.scripts.forEach((script) => {
-          switch (script.name) {
-            case 'Conservador':
-              script.options = [
-                { label: 'Menor chance de perdas' },
-                { label: 'Lucros menores' },
-                { label: 'Oportunidade de aprender' },
-              ];
-              break;
+        // response.scripts.forEach((script) => {
+        //   switch (script.name) {
+        //     case 'Conservador':
+        //       script.options = [
+        //         { label: 'Menor chance de perdas' },
+        //         { label: 'Lucros menores' },
+        //         { label: 'Oportunidade de aprender' },
+        //       ];
+        //       break;
 
-            case 'Moderado':
-              script.options = [
-                { label: 'Moderada chance de perdas' },
-                { label: 'Moderada chance de lucro' },
-                { label: 'Oportunidade de avançar' },
-              ];
-              break;
+        //     case 'Moderado':
+        //       script.options = [
+        //         { label: 'Moderada chance de perdas' },
+        //         { label: 'Moderada chance de lucro' },
+        //         { label: 'Oportunidade de avançar' },
+        //       ];
+        //       break;
 
-            case 'Agressivo':
-              script.options = [
-                { label: 'Alta chance de lucro' },
-                { label: 'Alta chance de perdas' },
-                { label: 'Operações avancadas' },
-              ];
-              break;
+        //     case 'Agressivo':
+        //       script.options = [
+        //         { label: 'Alta chance de lucro' },
+        //         { label: 'Alta chance de perdas' },
+        //         { label: 'Operações avancadas' },
+        //       ];
+        //       break;
 
-            default:
-              break;
-          }
-        });
+        //     default:
+        //       break;
+        //   }
+        // });
 
         response?.scripts.reverse();
 
@@ -72,17 +72,8 @@ const Operation = () => {
       <Container variants={variants.opacity} animate="visible" initial="hidden">
         <Row>
           {bots?.map((item, index) => (
-            <Card key={index} variants={variants.itemSlide}>
+            <Card key={index} variants={variants.itemSlide} image={item?.image}>
               <Title>{item.name}</Title>
-
-              <div className="texts">
-                {item.options.map((option, index) => (
-                  <TextContainer type={index}>
-                    <div></div>
-                    <Text>{option.label}</Text>
-                  </TextContainer>
-                ))}
-              </div>
 
               <Button
                 onClick={() => {

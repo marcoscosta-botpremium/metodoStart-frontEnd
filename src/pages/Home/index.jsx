@@ -3,7 +3,7 @@ import Button from '../../components/Button/index';
 import Layout from '../../components/Layout/index';
 
 import { variants } from '../../utils/motionConfig';
-import { Card, Container } from './styles';
+import { Title, Card, Container } from './styles';
 
 const Home = () => {
   const navigate = useNavigate();
@@ -12,16 +12,16 @@ const Home = () => {
     <>
       <Layout title="Aulas" noMenu>
         <Container>
-          <Card type="1" variants={variants.itemSlide}>
-            <Button onClick={() => navigate('/tutorials')}>Aulas</Button>
+          <Card type="1" variants={variants.itemSlide} onClick={() => navigate('/tutorials')}>
+            <Title>Aulas</Title>
           </Card>
 
-          <Card type="2" variants={variants.itemSlide}>
-            <Button onClick={() => navigate('/operation')}>Operações</Button>
+          <Card type="2" variants={variants.itemSlide} onClick={() => navigate('/operation')}>
+            <Title>Operações</Title>
           </Card>
 
-          <Card type="3" variants={variants.itemSlide}>
-            <Button onClick={() => navigate('/upgrades')}>Upgrades</Button>
+          <Card type="3" variants={variants.itemSlide} onClick={() => navigate('/upgrades')}>
+            <Title>Upgrades</Title>
           </Card>
         </Container>
       </Layout>

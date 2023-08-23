@@ -3,11 +3,10 @@ import styled, { css } from 'styled-components';
 import { breakPoint, Column, Row, toRem } from '../../styles/global';
 
 export const Container = styled(Row)`
-  height: ${toRem(440)};
+  height: ${toRem(630)};
   padding: 0 ${toRem(12)};
   width: 100%;
-
-  overflow-y: auto;
+  overflow: hidden;
 
   iframe {
     width: ${toRem(620)};
@@ -50,6 +49,8 @@ export const VideoContainer = styled(Column)`
 
 export const ListTutorials = styled(motion.div)`
   width: 35%;
+  overflow-y: scroll;
+  height: 100%;
 
   @media (max-width: ${breakPoint.mobileLg}) {
     width: 100%;
@@ -94,8 +95,12 @@ export const ItemTutorials = styled(Row)`
     css`
       background: linear-gradient(
         to right,
-        ${({ theme }) => theme.colors.primary},
-        ${({ theme }) => theme.colors.secundary}
+        #0D953C,
+        #1AE363
       );
     `};
+`;
+
+export const Scroll = styled(Row)`
+  overflow-y: auto;
 `;

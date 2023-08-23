@@ -1,5 +1,5 @@
 import { alpha } from "@mui/material/styles";
-const primaryMain = "#2499EF";
+const primaryMain = "#010101";
 export const primary = {
   light: "#E5F3FD",
   main: primaryMain,
@@ -11,7 +11,7 @@ export const primary = {
   purple: "#A798FF",
   yellow: "#FF9777",
 };
-const secondaryMain = "#23C657";
+const secondaryMain = "#2f2d37";
 export const secondary = {
   light: "#E3F0FF",
   main: secondaryMain,
@@ -113,7 +113,7 @@ export const lightPalette = {
     default: "#f3f4f9",
     paper: "#ffffff",
   },
-  primary:{
+  primary: {
     100: "rgba(36, 153, 239, 0.08)",
     200: "rgba(36, 153, 239, 0.2)",
     300: "rgba(36, 153, 239, 0.3)",
@@ -136,7 +136,7 @@ export const darkPalette = {
     default: "#221c33",
     paper: "#222b36",
   },
-  primary:{
+  primary: {
     100: "rgba(36, 153, 239, 0.08)",
     200: "rgba(36, 153, 239, 0.2)",
     300: "rgba(36, 153, 239, 0.3)",
@@ -148,9 +148,9 @@ export const darkPalette = {
     yellow: "#FF9777",
     dark: "rgb(25, 107, 167)",
     contrastText: "#fff",
-    muted:"#999"
+    muted: "#999"
   },
-  third:{
-    main:"#6cdd60",
+  third: {
+    main: "#6cdd60",
   }
 };
