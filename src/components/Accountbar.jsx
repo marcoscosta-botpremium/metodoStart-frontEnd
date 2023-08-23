@@ -137,7 +137,7 @@ export const Accountbar = (props) => {
             >
               Sair da corretora
             </Button>
-            <Stack>
+            {/* <Stack>
               <Grid container>
                 <Grid item xs={6}>
                   <Typography variant="subtitle2" sx={{ fontWeight: 'bold' }}>
@@ -145,7 +145,7 @@ export const Accountbar = (props) => {
                   </Typography>
                 </Grid>
               </Grid>
-            </Stack>
+            </Stack> */}
 
             {/* <Stack
               sx={{ marginTop: 2, width: '100%' }}
