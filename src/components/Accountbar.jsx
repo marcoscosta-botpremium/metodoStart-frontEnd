@@ -137,6 +137,16 @@ export const Accountbar = (props) => {
             >
               Sair da corretora
             </Button>
+            <Stack>
+              <Grid container>
+                <Grid item xs={6}>
+                  <Typography variant="subtitle2" sx={{ fontWeight: 'bold' }}>
+                    Saldo
+                  </Typography>
+                </Grid>
+              </Grid>
+            </Stack>
+
             {/* <Stack
               sx={{ marginTop: 2, width: '100%' }}
               alignItems="flex-end"
