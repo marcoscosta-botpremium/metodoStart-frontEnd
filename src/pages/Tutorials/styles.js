@@ -70,7 +70,7 @@ export const ItemTutorials = styled(Row)`
   cursor: pointer;
   border-radius: 8px;
 
-  background: ${({ theme }) => theme.colors.backgroundDark};
+  background: #010101;
 
   &:nth-child(1) {
     margin-top: 0;

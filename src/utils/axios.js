@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const axiosInstance = axios.create({
-  baseURL: 'https://api.botzinho.com.br',
+  baseURL: 'https://api.appspytech.com',
   headers: {
     Authorization: localStorage.getItem('accessToken')
       ? `Token ${localStorage.getItem('accessToken')}`
