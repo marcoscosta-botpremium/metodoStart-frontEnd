@@ -1,8 +1,8 @@
 import { motion } from 'framer-motion';
 import styled, { css } from 'styled-components';
-import imgAulas from '../../assets/1.png';
-import imgOperacoes from '../../assets/2.png';
-import imgUpgrade from '../../assets/3.png';
+import imgAulas from '../../assets/1.webp';
+import imgOperacoes from '../../assets/2.webp';
+import imgUpgrade from '../../assets/3.webp';
 import { breakPoint, toRem } from '../../styles/global';
 
 export const Container = styled(motion.div)`
