@@ -35,13 +35,14 @@ const TabsComponent = () => {
   const location = useLocation();
   const tabRoutes = ['/tutorials', '/robot', '/upgrades'];
   const currentTabIndex = tabRoutes.indexOf(location.pathname);
+  const isHome = location.pathname == '/home';
 
   const handleChange = (event, newValue) => {
     // You can use your preferred routing method to change the tab
     // For example, useHistory().push(tabRoutes[newValue])
   };
 
-  return (
+  return (!isHome) ? (
     <Tabs
       value={currentTabIndex}
       onChange={handleChange}
@@ -82,7 +83,7 @@ const TabsComponent = () => {
         }}
       />
     </Tabs>
-  );
+  ) : null
 };
 
 export default TabsComponent;

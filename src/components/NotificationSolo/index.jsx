@@ -40,7 +40,7 @@ const NotificationSolo = () => {
 
   return (
     <div style={{ width: '100%', display: 'flex', justifyContent: 'flex-end' }} className="notification-solo-container">
-      <div style={{ width: '30%', marginTop: -37 }}>
+      <div style={{ marginTop: -37 }}>
         <Card style={{ width: '100%' }}>
           <CardContent style={{ padding: 7 }}>
             <div className="notification-item" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
