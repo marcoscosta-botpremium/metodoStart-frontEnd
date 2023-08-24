@@ -70,6 +70,7 @@
     "yup": "^1.0.2"
   },
   "devDependencies": {
+    "@faker-js/faker": "^8.0.2",
     "@types/styled-components": "^5.1.26",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",

@@ -21,6 +21,7 @@ import {
 } from '../../../services/app';
 import { Img } from '../../../styles/global';
 import { AuthContext } from '../../../contexts/auth';
+import NotificationSolo from '../../../components/NotificationSolo';
 moment.locale('pt-br');
 
 const useStyles = makeStyles({
@@ -97,8 +98,7 @@ const Side = ({ ...rest }) => {
         sx={{ display: { xs: 'block', md: 'none' } }}
       >
         <Stack
-          onClick={() => setAccountbarOpen((status) => !status)}
-          sx={{ display: { xs: 'block', md: 'none' } }}
+          sx={{ display: { xs: 'block', md: 'none' }, position: 'relative' }}
         >
           {user?.user?.picture ? (
             <Avatar
@@ -203,7 +203,7 @@ const Side = ({ ...rest }) => {
       <div id="blocklyArea" style={{ width: '0', height: '0' }}></div>
 
       <div id="blocklyDiv" style={{ position: 'absolute' }}></div>
-    </Grid>
+    </Grid >
   );
 };
 

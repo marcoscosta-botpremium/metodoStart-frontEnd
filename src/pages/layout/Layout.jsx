@@ -22,6 +22,7 @@ import {
   addBalanceForToken,
   generateLiveApiInstance,
 } from '../../services/app';
+import NotificationSolo from '../../components/NotificationSolo';
 moment.locale('pt-br');
 
 const useStyles = makeStyles({

@@ -71,7 +71,7 @@ const TabsComponent = () => {
         }}
       />
       <Tab
-        label="Upgrades"
+        label="Atualizações"
         icon={<UpdateIcon />}
         component={RouterLink}
         to="/upgrades"

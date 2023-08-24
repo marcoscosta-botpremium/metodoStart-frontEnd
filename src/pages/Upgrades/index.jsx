@@ -39,7 +39,7 @@ function Upgrades() {
 
   return (
     <Layout
-      title="Upgrades"
+      title="Atualizações"
       noBg>
       <Grid sx={{
         display: { sm: 'none', xs: 'none', md: 'none', lg: 'none', xl: 'none' },

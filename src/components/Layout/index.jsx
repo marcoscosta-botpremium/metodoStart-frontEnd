@@ -6,8 +6,9 @@ import { Img, SubTitle } from '../../styles/global';
 import { variants } from '../../utils/motionConfig';
 import Menu from './Menu/index';
 import Side from './Side/index';
+import { Grid } from '@mui/material';
 import { Container, Content, Flex, Items, Left, Rigth } from './styles';
-
+import NotificationSolo from '../../components/NotificationSolo';
 const Layout = ({ title, noMenu, children, noBg }) => {
   const navigate = useNavigate();
 
@@ -31,6 +32,7 @@ const Layout = ({ title, noMenu, children, noBg }) => {
 
               <Side sx={{ display: { xs: 'block', md: 'none' } }} />
             </Stack>
+            <NotificationSolo />
             {noMenu || <Menu title={title} />}
           </Flex>
 

@@ -21,7 +21,7 @@ const Home = () => {
           </Card>
 
           <Card type="3" variants={variants.itemSlide} onClick={() => navigate('/upgrades')}>
-            <Title>Upgrades</Title>
+            <Title>Atualizações</Title>
           </Card>
         </Container>
       </Layout>

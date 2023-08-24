@@ -49,7 +49,7 @@ function Menu({ title }) {
 
       <Card
         variants={variants.itemOpacity}
-        active={title === 'Upgrades'}
+        active={title === 'Atualizações'}
         whileTap={{
           scale: 0.9,
         }}

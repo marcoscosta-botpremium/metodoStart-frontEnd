@@ -23,6 +23,7 @@ import { getOAuthURL, isRealAccount } from '../services/app';
 import { setTokenList } from '../services/storage';
 import { saveBeforeUnload } from '../utils/binary';
 import Switch from './Switch';
+import Notifications from '../components/Notifications';
 
 moment.locale('pt-br');
 
@@ -145,6 +146,7 @@ export const Accountbar = (props) => {
             >
               Sair da corretora
             </Button>
+            <Notifications />
             {/* <Stack>
               <Grid container>
                 <Grid item xs={6}>
