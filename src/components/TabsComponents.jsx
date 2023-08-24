@@ -39,6 +39,7 @@ const useStyles = makeStyles((theme) => ({
   tabs: {
     backgroundColor: '#0d0e0d !important',
     display: 'flex',
+    width: '100%',
     justifyContent: 'center',
     alignItems: 'center',
   },
