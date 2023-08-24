@@ -22,6 +22,7 @@ import {
 import { Img } from '../../../styles/global';
 import { AuthContext } from '../../../contexts/auth';
 import NotificationSolo from '../../../components/NotificationSolo';
+import { Button } from '@mui/material';
 moment.locale('pt-br');
 
 const useStyles = makeStyles({
@@ -100,15 +101,18 @@ const Side = ({ ...rest }) => {
         <Stack
           sx={{ display: { xs: 'block', md: 'none' }, position: 'relative' }}
         >
-          {user?.user?.picture ? (
-            <Avatar
-              sx={{ width: 48, height: 48 }}
-              alt={user?.user?.nome}
-              src={`data:image/png;base64,${user?.user?.picture}`}
-            />
-          ) : (
-            <AccountCircleIcon sx={{ width: 48, height: 48 }} />
-          )}
+          <div
+            onClick={() => setAccountbarOpen(true)}>
+            {user?.user?.picture ? (
+              <Avatar
+                sx={{ width: 48, height: 48 }}
+                alt={user?.user?.nome}
+                src={`data:image/png;base64,${user?.user?.picture}`}
+              />
+            ) : (
+              <AccountCircleIcon sx={{ width: 48, height: 48 }} />
+            )}
+          </div>
         </Stack>
       </Grid>
 
