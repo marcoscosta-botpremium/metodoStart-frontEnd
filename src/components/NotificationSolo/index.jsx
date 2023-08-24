@@ -9,6 +9,7 @@ const getRandomValue = (min, max) => Math.floor(Math.random() * (max - min + 1))
 
 const NotificationSolo = () => {
   const [notification, setNotification] = useState(null);
+  const [hide, setHide] = useState(true);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -27,21 +28,23 @@ const NotificationSolo = () => {
 
     const notificationType = types[type];
     const value = getRandomValue(type === 'loss' ? 1 : 15, type === 'loss' ? 20 : 200);
-
-    setNotification({
-      name: `${faker.person.firstName()} ${faker.person.lastName()[0]}.`,
-      type: notificationType,
-      value,
-    });
+    setTimeout(() => {
+      setNotification({
+        name: `${faker.person.firstName()} ${faker.person.lastName()[0]}.`,
+        type: notificationType,
+        value,
+      });
+      setHide(false)
+    }, 300);
 
     setTimeout(() => {
-      setNotification(null);
+      setHide(true)
     }, 3000); // Clear the notification after 3 seconds
   };
 
   return (
     <div style={{ width: '100%', display: 'flex', height: 15, justifyContent: 'flex-end' }} className="notification-solo-container">
-      <CSSTransition in={notification !== null} timeout={300} classNames="notification-fade" unmountOnExit>
+      <CSSTransition in={!hide} timeout={300} classNames="notification-fade" unmountOnExit>
         <div style={{ marginTop: -37 }}>
           <Card style={{ width: '100%' }}>
             <CardContent style={{ padding: 7 }}>
