@@ -12,8 +12,10 @@ import {
   VideoContainer,
   Scroll
 } from './styles';
+import { useParams } from 'react-router-dom';
 
 const Tutorials = () => {
+  const { id } = useParams();
   const [tutorials, setTutorials] = useState([]);
   const [selectedVideo, setSelectedVideo] = useState({});
 
@@ -25,7 +27,12 @@ const Tutorials = () => {
         const response = await api.getTutorials(controller);
 
         response.publications.reverse();
-        setSelectedVideo(response?.publications[0]);
+
+        if (id) {
+          setSelectedVideo(response?.publications[1]);
+        } else {
+          setSelectedVideo(response?.publications[0]);
+        }
         setTutorials(response?.publications);
       } catch (error) {
         // console.log(error);
@@ -59,7 +66,12 @@ const Tutorials = () => {
             />
           )}
 
-          <SubTitle>{selectedVideo?.title}</SubTitle>
+          <SubTitle
+            style={{
+              color: '#00DF00',
+              fontWeight: 'bold',
+            }}
+          >{selectedVideo?.title}</SubTitle>
           <Text id="describe"></Text>
         </VideoContainer>
 
@@ -83,7 +95,7 @@ const Tutorials = () => {
           ))}
         </ListTutorials>
       </Container>
-    </Layout>
+    </Layout >
   );
 };
 

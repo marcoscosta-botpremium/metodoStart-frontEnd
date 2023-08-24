@@ -46,6 +46,10 @@ export const InternalRouter = [
     element: <Tutorials />,
   },
   {
+    path: 'tutorials/:id',
+    element: <Tutorials />,
+  },
+  {
     path: 'config',
     element: <Config />,
   },

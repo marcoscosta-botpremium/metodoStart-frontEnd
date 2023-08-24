@@ -75,6 +75,7 @@ const Robot = () => {
   const [summary, setSummary] = useState({});
   const [open, setOpen] = useState(false);
   const [botOpen, setBotOpen] = useState(false);
+  const [historyOpen, setHistoryOpen] = useState(false);
 
   globalObserver.register('contract.status', (contractStatus) => {
     if (contractStatus.id === 'contract.purchase_sent') {
@@ -386,9 +387,11 @@ const Robot = () => {
                       paddingX: 2,
                       marginLeft: 3,
                       marginRight: 3,
-                      background: '#0d0e0d',
+                      background: !historyOpen ? '#0d0e0d' : 'linear-gradient(0.25turn, #0D953C, #1AE363);'
                     }}
                     onClick={() => {
+                      setHistoryOpen(status => !status)
+
                       // scroll to bottom
                       const element = document.getElementById('tradetable-history');
                       element?.scrollIntoView({ behavior: 'smooth' });
@@ -515,7 +518,7 @@ const Robot = () => {
                 data={(!!summary?.totalWin && !!summary?.totalLoss) ? [summary?.totalWin, summary?.totalLoss] : [1, 1]} />
             </Card>
           </Grid>
-          <Grid display={{ xs: 'none', md: 'block', lg: 'block' }} item xs={12} md={12} lg={6}>
+          <Grid style={{ marginLeft: 'auto', marginRight: 'auto' }} display={{ xs: 'none', md: 'block', lg: 'block' }} item xs={12} md={12} lg={6}>
             {botRunning ? <Card sx={{
               marginTop: 2,
               paddingTop: 2,
@@ -608,7 +611,7 @@ const Robot = () => {
               >
                 {localStorage.bootTrue === 'true' &&
                   userInfo?.user?.email === 'marcos.vinicios_12@hotmail.com'
-                  ? 'CR2623624'
+                  ? tokenList[1]?.accountName
                   : tokenList[0]?.accountName}
               </Typography>
             </Stack>
@@ -638,7 +641,7 @@ const Robot = () => {
             </Grid>
           </Grid>
 
-          <Scrollbars id="tradetable-history" style={{ width: '100%', height: toRem(320) }}>
+          <Scrollbars id="tradetable-history" style={{ display: historyOpen ? 'block' : 'none', width: '100%', height: toRem(320) }}>
             <TradeTable />
           </Scrollbars>
 
@@ -727,15 +730,17 @@ const Robot = () => {
             Conectar-se
           </Button>
 
-          <Typography mt={4} variant="subtitle2" sx={{
-            textAlign: 'center',
-            cursor: 'pointer',
-            textDecoration: 'underline',
-          }} onClick={
-            () => {
-              window.open('https://deriv.com/signup/', '_blank')
-            }
-          }>
+          <Typography
+            mt={1}
+            variant="subtitle2"
+            sx={{
+              textAlign: 'center',
+              cursor: 'pointer',
+              textDecoration: 'underline',
+            }}
+            onClick={() => {
+              navigate('/tutorials/2/');
+            }}>
             Caso não tenha conta na corretora clique aqui
           </Typography>
         </Grid>

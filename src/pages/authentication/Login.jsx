@@ -17,39 +17,39 @@ const Login = () => {
   const [error, setError] = useState('')
   const [isLoading, setIsLoading] = useState(false)
   const handleChange = (e) => {
-    setData(dt => ({...dt, [e.target.name]:e.target.value}))
+    setData(dt => ({ ...dt, [e.target.name]: e.target.value }))
   }
 
   return (
     <AuthenticationLayout
       isLoading={isLoading}
     >
-      {(error) ? 
-      <Alert 
-        sx={{
-          marginLeft:'auto',
-          marginRight:'auto',
-          width: '77%',
-          borderRadius:10,
-          paddingRight:4,
-          paddingLeft:4
-        }}
-        severity="error">
+      {(error) ?
+        <Alert
+          sx={{
+            marginLeft: 'auto',
+            marginRight: 'auto',
+            width: '77%',
+            borderRadius: 10,
+            paddingRight: 4,
+            paddingLeft: 4
+          }}
+          severity="error">
           {error}
-        </Alert>:null}
+        </Alert> : null}
       <form>
         <AppTextField
           name="user"
           sx={{
             width: '77%',
-            marginTop: (error) ? 4:0,
+            marginTop: (error) ? 4 : 0,
             "& input::placeholder": {
               fontSize: 14
             }
           }}
           InputProps={{
             startAdornment: (
-              <InputAdornment 
+              <InputAdornment
                 position="start">
                 <Email />
               </InputAdornment>
@@ -62,7 +62,7 @@ const Login = () => {
           name="password"
           sx={{
             width: '77%',
-            marginTop:4,
+            marginTop: 4,
             "& input::placeholder": {
               fontSize: 14
             }
@@ -86,17 +86,17 @@ const Login = () => {
             )
           }}
           onChange={handleChange}
-          type={visible ? "text":"password"}
+          type={visible ? "text" : "password"}
           fullWidth
           placeholder="Digite sua senha" />
         <Button
           href="/forgot"
           sx={{
             width: '77%',
-            marginTop:5,
-            paddingLeft:2,
-            paddingRight:2,
-            color:"#999999",
+            marginTop: 5,
+            paddingLeft: 2,
+            paddingRight: 2,
+            color: "#999999",
             '&:hover': {
               color: 'text.primary',
               opacity: [0.9, 0.8, 0.7],
@@ -121,15 +121,15 @@ const Login = () => {
           }}
           sx={{
             width: '77%',
-            marginTop:5,
-            marginBottom:7,
-            minHeight:40,
-            borderRadius:4,
-            fontSize:14,
-            fontWeight:'bold',
+            marginTop: 5,
+            marginBottom: 7,
+            minHeight: 40,
+            borderRadius: 4,
+            fontSize: 14,
+            fontWeight: 'bold',
             background: "linear-gradient(0.25turn, #6cdd60, #2196b6);"
           }}>
-         Entrar
+          Entrar
         </Button>
       </form>
     </AuthenticationLayout>

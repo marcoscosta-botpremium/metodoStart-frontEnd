@@ -38,8 +38,10 @@ const Layout = ({ title, noMenu, children, noBg }) => {
 
           {noMenu || (
             <>
-              <SubTitle>{title}</SubTitle>
-              <Items noBg={noBg}>{children}</Items>
+              {/* <SubTitle>{title}</SubTitle> */}
+              <Items style={{
+                marginTop: '2rem'
+              }} noBg={noBg}>{children}</Items>
             </>
           )}
 

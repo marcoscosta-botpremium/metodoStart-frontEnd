@@ -59,7 +59,11 @@ const AppWrapper = () => {
                 <Global />
                 <Router>
                   <Toaster />
-                  <App />
+                  <div style={{
+                    paddingBottom: '72px',
+                  }}>
+                    <App />
+                  </div>
                   <Tabs />
                 </Router>
               </MuiProvider>

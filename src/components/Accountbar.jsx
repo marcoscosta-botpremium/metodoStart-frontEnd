@@ -274,14 +274,12 @@ export const Accountbar = (props) => {
               Conectar-se
             </Button>
 
-            <Typography mt={4} variant="subtitle2" sx={{
+            <Typography mt={1} variant="subtitle2" sx={{
               cursor: 'pointer',
               textDecoration: 'underline',
-            }} onClick={
-              () => {
-                window.open('https://deriv.com/signup/', '_blank')
-              }
-            }>
+            }} onClick={() => {
+              navigate('/tutorials/2/');
+            }}>
               Caso não tenha conta na corretora clique aqui
             </Typography>
           </Stack>

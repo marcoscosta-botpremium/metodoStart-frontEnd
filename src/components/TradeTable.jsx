@@ -55,7 +55,7 @@ export default function TradeTable() {
                 <TableCell sx={{ ...cellStyle, display: { xs: 'none', sm: 'none', md: 'table-cell' } }} align="center">{item.entry_spot}</TableCell>
                 <TableCell sx={{ ...cellStyle, display: { xs: 'none', sm: 'none', md: 'table-cell' } }} align="center">{(item.profit) ? item.current_spot : null}</TableCell>
                 <TableCell align="center">{item.buy_price}</TableCell>
-                <TableCell style={{ color: (Number(item.profit) >= 0) ? '#1fa69a' : '#c2465b' }} align="center">{(item.profit) ? '$' + (Number(item.profit)).toFixed(2) : null}</TableCell>
+                <TableCell style={{ color: (Number(item.profit) >= 0) ? '#02BF44' : '#FF3531' }} align="center">{(item.profit) ? '$' + (Number(item.profit)).toFixed(2) : null}</TableCell>
                 {/* <TableCell align="center">{item.profit}</TableCell> */}
               </TableRow>
             ))}

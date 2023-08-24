@@ -74,7 +74,7 @@ const NotificationList = () => {
                       sx={{
                         width: 37,
                         height: 37,
-                        backgroundColor: notification.type === 'Loss' ? '#FF3D71' : '#1AE363',
+                        backgroundColor: notification.type === 'Loss' ? '#FF3531' : '#02BF44',
                       }}
                     >
                       <PersonIcon />
@@ -86,7 +86,7 @@ const NotificationList = () => {
                       <div style={{
                         width: '100%',
                         textAlign: 'start',
-                        color: notification.type === 'Loss' ? '#FF3D71' : '#1AE363'
+                        color: notification.type === 'Loss' ? '#FF3531' : '#02BF44'
                       }} className={`notification-description ${notification.type}`}>
                         {notification.type === 'Loss' ? '-' : '+'} ${notification.value.toFixed(2)}
                       </div>

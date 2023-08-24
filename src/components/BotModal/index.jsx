@@ -51,6 +51,8 @@ export default function BotModal(props) {
 
     getTutorials();
 
+
+
     return () => {
       controller.abort();
     };

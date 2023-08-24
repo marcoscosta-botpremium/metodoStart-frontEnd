@@ -70,6 +70,14 @@ const Login = ({ setActiveContent }) => {
       >
         Entrar
       </Button>
+      <div style={{
+        textAlign: 'center',
+        paddingLeft: '12.5%',
+        paddingRight: '12.5%',
+        fontSize: 9,
+        position: 'absolute',
+        bottom: 5,
+      }}>Os produtos oferecidos pela Deriv oferece derivativos complexos como opções e contratos por diferença ("CFDs"). Estes produtos podem não ser adequados para todos os clientes, e sua comercialização envolve riscos para você. Certifique-se de compreender os seguintes riscos antes de negociar produtos derivados: a) você pode perder parte ou todo o dinheiro investido na negociação, b) se sua negociação envolver conversão de moeda, as taxas de câmbio afetarão seus lucros e perdas. Nunca se deve negociar com dinheiro emprestado ou dinheiro que não se pode perder.</div>
     </Container>
   );
 };
