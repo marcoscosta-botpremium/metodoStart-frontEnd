@@ -9,9 +9,9 @@ const getRandomValue = (min, max) => Math.floor(Math.random() * (max - min + 1))
 
 const NotificationList = () => {
   const [notifications, setNotifications] = useState([
-    { id: 1, name: `${faker.name.firstName()} ${faker.name.lastName()[0]}.`, type: Math.random() < 0.2 ? 'Loss' : 'Gain', value: getRandomValue(1, 100) },
-    { id: 2, name: `${faker.name.firstName()} ${faker.name.lastName()[0]}.`, type: Math.random() < 0.2 ? 'Loss' : 'Gain', value: getRandomValue(1, 100) },
-    { id: 3, name: `${faker.name.firstName()} ${faker.name.lastName()[0]}.`, type: Math.random() < 0.2 ? 'Loss' : 'Gain', value: getRandomValue(1, 100) },
+    { id: 1, name: `${faker.person.firstName()} ${faker.person.lastName()[0]}.`, type: Math.random() < 0.2 ? 'Loss' : 'Gain', value: getRandomValue(1, 100) },
+    { id: 2, name: `${faker.person.firstName()} ${faker.person.lastName()[0]}.`, type: Math.random() < 0.2 ? 'Loss' : 'Gain', value: getRandomValue(1, 100) },
+    { id: 3, name: `${faker.person.firstName()} ${faker.person.lastName()[0]}.`, type: Math.random() < 0.2 ? 'Loss' : 'Gain', value: getRandomValue(1, 100) },
   ]);
 
   const addNotification = (type) => {
@@ -25,7 +25,7 @@ const NotificationList = () => {
 
     const newNotification = {
       id: Date.now(),
-      name: `${faker.name.firstName()} ${faker.name.lastName()[0]}.`,
+      name: `${faker.person.firstName()} ${faker.person.lastName()[0]}.`,
       type: notificationType,
       value,
     };
@@ -37,10 +37,10 @@ const NotificationList = () => {
     const interval = setInterval(() => {
       const notificationType = Math.random() < 0.2 ? 'loss' : 'gain';
       addNotification(notificationType);
-    }, getRandomValue(10000, 60000)); // Interval between 10 seconds and 1 minute
+    }, getRandomValue(10000, 30000)); // Interval between 10 seconds and 1 minute
 
     return () => clearInterval(interval);
-  }, [notifications]);
+  }, []);
 
   return (
     <div style={{ width: '100%' }}>
@@ -81,7 +81,7 @@ const NotificationList = () => {
                     </Avatar>
                     <div style={{ width: '100%', paddingLeft: 14 }} className="notification-content">
                       <div style={{ width: '100%', textAlign: 'start' }} className={`notification-title ${notification.type}`}>
-                        {faker.name.firstName()} {faker.name.lastName()}
+                        {notification?.name}
                       </div>
                       <div style={{
                         width: '100%',

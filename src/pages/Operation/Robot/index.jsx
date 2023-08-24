@@ -79,11 +79,14 @@ const Robot = () => {
 
   globalObserver.register('contract.status', (contractStatus) => {
     if (contractStatus.id === 'contract.purchase_sent') {
-      setStatusBar(0);
-    } else if (contractStatus.id === 'contract.purchase_recieved') {
       setStatusBar(50);
-    } else if (contractStatus.id === 'contract.sold') {
+      console.log('contract.purchase_sent');
+    } else if (contractStatus.id === 'contract.purchase_recieved') {
       setStatusBar(100);
+      console.log('contract.purchase_recieved');
+    } else if (contractStatus.id === 'contract.sold') {
+      setStatusBar(0);
+      console.log('contract.sold');
     }
   });
 
@@ -423,6 +426,7 @@ const Robot = () => {
                         if (bot?.name) {
                           botRun();
                           setBotRunning(true);
+                          setStatusBar(0);
                         } else {
                           navigate('/strategies');
                           toast.error('Selecione uma estratégia para continuar');
@@ -475,13 +479,13 @@ const Robot = () => {
             justifyContent: 'center', // Horizontally center the content
             alignItems: 'center',
           }}>
-            <Grid container>
+            <Grid container style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <Grid item lg={12} style={{ display: 'flex', justifyContent: 'center' }}>
                 {statusBar == 0 ? <RingLoader size={40} color={"#36d7b7"} /> : null}
                 {statusBar == 50 ? <PuffLoader size={40} color={"#14BF44"} /> : null}
-                {statusBar == 100 ? <CheckCircleOutlineIcon size={40} color={"#14BF44"} /> : null}
+                {statusBar == 100 ? <CheckCircleOutlineIcon size={40} style={{ width: 40, height: 40, fill: '#14BF44' }} /> : null}
               </Grid>
-              <Grid item lg={12} style={{ paddingTop: 7, textAlign: 'center' }}>
+              <Grid item lg={12} style={{ marginLeft: 10, paddingTop: 7, textAlign: 'center' }}>
                 {statusBar == 0 ?
                   <Typography sx={{ width: '100%', fontSize: 14, fontWeight: 'bold', color: '#8A8A8A' }}>
                     Analisando Mercado
@@ -616,8 +620,33 @@ const Robot = () => {
               </Typography>
             </Stack>
           </Card>
+          <Button
+            sx={{
+              width: '100%',
+              marginTop: 2,
+              paddingX: 2,
+              minHeight: 34,
+              borderRadius: 2,
+              fontSize: 14,
+              fontWeight: 'bold',
+              background: 'linear-gradient(0.25turn, #0D953C, #1AE363);',
+              display: {
+                xl: 'inline-flex',
+                lg: 'inline-flex',
+                md: 'inline-flex',
+                xs: 'inline-flex',
+                sm: 'inline-flex',
+              },
+            }}
+            onClick={() => {
+              globalObserver.emit('summary.clear');
+              setTrades([]);
+            }}
+          >
+            Limpar operações
+          </Button>
         </Grid>
-      </Grid>
+      </Grid >
       <Stack>
         <Card sx={{ background: 'transparent' }}>
           <Grid>
@@ -683,9 +712,9 @@ const Robot = () => {
                 display: {
                   xl: 'none',
                   lg: 'none',
-                  md: 'inline-flex',
-                  xs: 'inline-flex',
-                  sm: 'inline-flex',
+                  md: 'none',
+                  xs: 'none',
+                  sm: 'none',
                 },
               }}
               onClick={() => {

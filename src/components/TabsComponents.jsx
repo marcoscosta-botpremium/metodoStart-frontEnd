@@ -5,6 +5,7 @@ import { makeStyles, useTheme } from '@mui/styles';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import PsychologyIcon from '@mui/icons-material/Psychology';
 import UpdateIcon from '@mui/icons-material/Update';
+import { useEffect } from 'react';
 
 const useStyles = makeStyles((theme) => ({
   tabsWrapper: {
@@ -14,6 +15,21 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     transition: 'transform 0.3s ease',
     transform: 'translateY(100%)',
+    [theme.breakpoints.up('xs')]: {
+      display: 'block',
+    },
+    [theme.breakpoints.down('sm')]: {
+      display: 'block',
+    },
+    [theme.breakpoints.up('md')]: {
+      display: 'none',
+    },
+    [theme.breakpoints.up('lg')]: {
+      display: 'none',
+    },
+    [theme.breakpoints.up('xl')]: {
+      display: 'none',
+    },
   },
   tabsVisible: {
     transform: 'translateY(0)',
@@ -46,18 +62,12 @@ const TabsComponent = () => {
   const isHome = location.pathname === '/home';
 
   // Toggle state to control tab visibility
-  const [tabsVisible, setTabsVisible] = useState(!isHome);
-
-  const handleChange = (event, newValue) => {
-    // You can use your preferred routing method to change the tab
-    // For example, useHistory().push(tabRoutes[newValue])
-  };
+  const [tabsVisible, setTabsVisible] = useState(!isHome)
 
   return (
     <div className={`${classes.tabsWrapper} ${tabsVisible ? classes.tabsVisible : ''}`}>
       <Tabs
         value={currentTabIndex}
-        onChange={handleChange}
         centered
         className={classes.tabs}
       >

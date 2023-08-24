@@ -53,10 +53,14 @@ const Bot = () => {
   globalObserver.register('contract.status', (contractStatus) => {
     if (contractStatus.id === 'contract.purchase_sent') {
       setStatusBar(0);
+      console.log('contract.purchase_sent')
     } else if (contractStatus.id === 'contract.purchase_recieved') {
       setStatusBar(50);
+      console.log('contract.purchase_recieved')
+
     } else if (contractStatus.id === 'contract.sold') {
       setStatusBar(100);
+      console.log('contract.sold')
     }
   });
 

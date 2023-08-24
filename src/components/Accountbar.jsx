@@ -72,7 +72,7 @@ export const Accountbar = (props) => {
         <Stack
           direction="row"
           alignItems="center"
-          justifyContent="space-between"
+          justifyContent="flex-start"
           sx={{ width: '100%' }}
         >
           {user?.user?.picture ? (
@@ -82,7 +82,7 @@ export const Accountbar = (props) => {
               src={`data:image/png;base64,${user?.user?.picture}`}
             />
           ) : null}
-          <Stack alignItems="start">
+          <Stack style={{ marginLeft: 14 }} alignItems="start">
             <Typography
               sx={{ fontWeight: 'bold', margin: '0 !important' }}
               variant="subtitle2"

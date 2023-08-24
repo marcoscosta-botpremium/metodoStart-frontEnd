@@ -99,7 +99,6 @@ const BotProvider = ({ children }) => {
     return Math.floor(Math.random() * (max - min + 1) + min);
   }
   globalObserver.register('bot.running', (info) => {
-    setStatusBar(0);
     setBotRunning(true);
   });
 
