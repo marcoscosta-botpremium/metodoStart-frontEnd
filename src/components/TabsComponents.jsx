@@ -9,9 +9,11 @@ import { useEffect } from 'react';
 
 const useStyles = makeStyles((theme) => ({
   tabsWrapper: {
-    position: 'fixed',
+    position: 'fixed !important',
     left: 0,
-    bottom: 0,
+    top: 'auto !important',
+    bottom: '0 !important',
+    height: '72px !important',
     width: '100%',
     transition: 'transform 0.3s ease',
     transform: 'translateY(100%)',

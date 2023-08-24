@@ -11,7 +11,7 @@ const useQuery = () => new URLSearchParams(useLocation().search);
 
 const Auth = () => {
   const query = useQuery();
-  const [activeContent, setActiveContent] = useState(0);
+  const [activeContent, setActiveContent] = useState(query?.get('page') || 0);
 
   const code = query.get('code');
 

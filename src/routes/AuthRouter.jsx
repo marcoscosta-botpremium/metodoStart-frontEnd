@@ -3,8 +3,8 @@ import { Navigate } from 'react-router-dom';
 import { Loadable } from './utils';
 
 const Login = Loadable(lazy(() => import('../pages/Auth/index')));
-const Recover = Loadable(lazy(() => import('../pages/authentication/Recover')));
-const Forgot = Loadable(lazy(() => import('../pages/authentication/Forgot')));
+// const Recover = Loadable(lazy(() => import('../pages/Auth/RecoverPassword')));
+// const Forgot = Loadable(lazy(() => import('../pages/Auth/ForgotPassword')));
 
 /*****Routes******/
 export const AuthRouter = [
@@ -16,14 +16,10 @@ export const AuthRouter = [
     path: 'login',
     element: <Login />,
   },
-  {
-    path: 'forgot',
-    element: <Forgot />,
-  },
-  {
-    path: 'recover/',
-    element: <Recover />,
-  },
+  // {
+  //   path: 'recover/:`',
+  //   element: <Recover />,
+  // },
   {
     path: '*',
     element: <Navigate to="/login" />,
