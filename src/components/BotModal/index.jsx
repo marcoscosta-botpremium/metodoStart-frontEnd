@@ -13,22 +13,25 @@ const responsive = {
   superLargeDesktop: {
     // the naming can be any, depends on you.
     breakpoint: { max: 4000, min: 3000 },
-    items: 1
+    items: 5
   },
   desktop: {
-    breakpoint: { max: 3000, min: 1024 },
-    items: 1
+    breakpoint: { max: 3000, min: 2000 },
+    items: 4
+  },
+  laptop: {
+    breakpoint: { max: 2000, min: 1024 },
+    items: 4
   },
   tablet: {
-    breakpoint: { max: 1024, min: 464 },
-    items: 1
+    breakpoint: { max: 1024, min: 768 },
+    items: 3
   },
   mobile: {
     breakpoint: { max: 464, min: 0 },
     items: 1
   }
 };
-
 export default function BotModal(props) {
   const { selectBot } = React.useContext(BotContext)
   const { open, setOpen } = props
@@ -103,7 +106,7 @@ export default function BotModal(props) {
           <Carousel
             responsive={responsive}
             infinite={true}
-            centerMode={true}
+            centerMode={false}
             autoPlay={false}
             swipeable={true}
             draggable={true}
