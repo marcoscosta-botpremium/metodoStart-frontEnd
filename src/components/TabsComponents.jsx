@@ -18,19 +18,19 @@ const useStyles = makeStyles((theme) => ({
     transition: 'transform 0.3s ease',
     transform: 'translateY(100%)',
     [theme.breakpoints.up('xs')]: {
-      display: 'block',
+      display: 'flex !important',
     },
     [theme.breakpoints.down('sm')]: {
-      display: 'block',
+      display: 'flex !important',
     },
     [theme.breakpoints.up('md')]: {
-      display: 'none',
+      display: 'none !important',
     },
     [theme.breakpoints.up('lg')]: {
-      display: 'none',
+      display: 'none !important',
     },
     [theme.breakpoints.up('xl')]: {
-      display: 'none',
+      display: 'none !important',
     },
   },
   tabsVisible: {
