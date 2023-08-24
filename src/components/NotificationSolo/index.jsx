@@ -46,7 +46,7 @@ const NotificationSolo = () => {
     <div style={{ width: '100%', display: 'flex', height: 15, justifyContent: 'flex-end' }} className="notification-solo-container">
       <CSSTransition in={!hide} timeout={300} classNames="notification-fade" unmountOnExit>
         <div style={{ marginTop: -37 }}>
-          <Card style={{ width: '100%' }}>
+          <Card style={{ width: '100%', backgroundColor: 'rgb(13, 14, 13)' }}>
             <CardContent style={{ padding: 7 }}>
               <div className="notification-item" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
                 <Avatar
