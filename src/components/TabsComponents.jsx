@@ -64,6 +64,10 @@ const TabsComponent = () => {
   // Toggle state to control tab visibility
   const [tabsVisible, setTabsVisible] = useState(!isHome)
 
+  useEffect(() => {
+    setTabsVisible(!isHome)
+  }, [isHome])
+
   return (
     <div className={`${classes.tabsWrapper} ${tabsVisible ? classes.tabsVisible : ''}`}>
       <Tabs

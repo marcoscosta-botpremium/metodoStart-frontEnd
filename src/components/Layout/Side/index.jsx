@@ -1,4 +1,3 @@
-import { makeStyles } from '@material-ui/core/styles';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { Avatar, Drawer, Grid, Stack } from '@mui/material';
 import useMediaQuery from '@mui/material/useMediaQuery';
@@ -25,16 +24,6 @@ import NotificationSolo from '../../../components/NotificationSolo';
 import { Button } from '@mui/material';
 moment.locale('pt-br');
 
-const useStyles = makeStyles({
-  paper: {
-    background: '#2b2440',
-    width: 300,
-  },
-  paperAccount: {
-    background: '#0d0e0d',
-    width: 300,
-  },
-});
 
 const api = generateLiveApiInstance();
 
@@ -44,7 +33,6 @@ const Side = ({ ...rest }) => {
     useContext(BotContext);
 
   const { profitTable } = useContext(BinaryContext);
-  const styles = useStyles();
   const navigate = useNavigate();
   const downMd = useMediaQuery((theme) => theme.breakpoints.down('md'));
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -163,7 +151,12 @@ const Side = ({ ...rest }) => {
       <Drawer
         anchor="right"
         variant="temporary"
-        classes={{ paper: styles.paperAccount }}
+        PaperProps={{
+          style: {
+            background: '#0d0e0d',
+            width: 300,
+          }
+        }}
         open={accountBarOpen}
         onClose={() => setAccountbarOpen(false)}
       >

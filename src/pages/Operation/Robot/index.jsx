@@ -37,7 +37,7 @@ import DoughnutChart from '../../../components/DoughnutChart';
 // import Layout from './layout/Layout';
 import PuffLoader from 'react-spinners/PuffLoader';
 import RingLoader from 'react-spinners/RingLoader';
-import robotImg from '../../../assets/robot.svg'
+import robotImg from '../../../assets/robot.png'
 
 const Robot = () => {
   const {
