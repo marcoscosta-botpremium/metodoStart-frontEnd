@@ -10,8 +10,8 @@ const useStyles = makeStyles((theme) => ({
   tabs: {
     position: 'fixed',
     bottom: 0,
-    width: '100%',
-    backgroundColor: '#0d0e0d',
+    width: '100% !important',
+    backgroundColor: '#0d0e0d !important',
     [theme.breakpoints.up('md')]: {
       display: 'none',
     },
