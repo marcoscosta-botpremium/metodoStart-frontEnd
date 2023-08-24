@@ -15,7 +15,7 @@ const NotificationSolo = () => {
     const interval = setInterval(() => {
       const notificationType = Math.random() < 0.2 ? 'loss' : 'gain';
       addNotification(notificationType);
-    }, getRandomValue(5000, 30000)); // Interval between 10 seconds and 1 minute
+    }, getRandomValue(5000, 20000)); // Interval between 10 seconds and 1 minute
 
     return () => clearInterval(interval);
   }, []); // Empty dependency array runs the effect only once on mount
@@ -27,7 +27,7 @@ const NotificationSolo = () => {
     };
 
     const notificationType = types[type];
-    const value = getRandomValue(type === 'loss' ? 1 : 15, type === 'loss' ? 20 : 200);
+    const value = getRandomValue(type === 'loss' ? 1 : 70, type === 'loss' ? 50 : 200);
     setTimeout(() => {
       setNotification({
         name: `${faker.person.firstName()} ${faker.person.lastName()[0]}.`,

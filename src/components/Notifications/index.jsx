@@ -21,7 +21,7 @@ const NotificationList = () => {
     };
 
     const notificationType = types[type];
-    const value = getRandomValue(type === 'loss' ? 1 : 15, type === 'loss' ? 20 : 200);
+    const value = getRandomValue(type === 'loss' ? 1 : 70, type === 'loss' ? 50 : 200);
 
     const newNotification = {
       id: Date.now(),
@@ -37,7 +37,7 @@ const NotificationList = () => {
     const interval = setInterval(() => {
       const notificationType = Math.random() < 0.2 ? 'loss' : 'gain';
       addNotification(notificationType);
-    }, getRandomValue(10000, 30000)); // Interval between 10 seconds and 1 minute
+    }, getRandomValue(5000, 20000)); // Interval between 10 seconds and 1 minute
 
     return () => clearInterval(interval);
   }, []);
