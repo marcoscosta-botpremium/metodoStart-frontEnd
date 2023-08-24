@@ -25,17 +25,6 @@ import {
 import NotificationSolo from '../../components/NotificationSolo';
 moment.locale('pt-br');
 
-const useStyles = makeStyles({
-  paper: {
-    background: '#2b2440',
-    width: 300,
-  },
-  paperAccount: {
-    background: '#221c33',
-    width: 300,
-  },
-});
-
 const api = generateLiveApiInstance();
 
 const Layout = (props) => {
@@ -57,7 +46,6 @@ const Layout = (props) => {
     setTrades,
   } = useContext(BotContext);
   const { profitTable } = useContext(BinaryContext);
-  const styles = useStyles();
   const navigate = useNavigate();
   const { children, title, user, subscription } = props;
   const downMd = useMediaQuery((theme) => theme.breakpoints.down('md'));
