@@ -37,7 +37,7 @@ const NotificationList = () => {
     const interval = setInterval(() => {
       const notificationType = Math.random() < 0.2 ? 'loss' : 'gain';
       addNotification(notificationType);
-    }, getRandomValue(5000, 20000)); // Interval between 10 seconds and 1 minute
+    }, getRandomValue(5000, 10000)); // Interval between 10 seconds and 1 minute
 
     return () => clearInterval(interval);
   }, []);
