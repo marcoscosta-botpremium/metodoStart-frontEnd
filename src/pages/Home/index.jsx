@@ -16,6 +16,15 @@ const Home = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    api.getUser().then((res) => {
+      setUser(res.data)
+    }
+    ).catch((err) => {
+      console.log(err)
+    }
+  }, [])
+
+  useEffect(() => {
     if (user) {
       setOpen(!user?.user?.terms)
     }
