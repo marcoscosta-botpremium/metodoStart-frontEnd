@@ -12,14 +12,7 @@ import { AuthContext } from '../../contexts/auth';
 
 const Home = () => {
   const { user, setUser } = useContext(AuthContext)
-  const [accepted, setAccepted] = useState(true);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    if (user) {
-      setAccepted(user?.user?.terms)
-    }
-  }, [])
 
   return (
     <>
@@ -37,10 +30,9 @@ const Home = () => {
             <Title>Atualizações</Title>
           </Card>
         </Container>
-
+        {console.log(user?.user)}
         <Modal
-          open={!accepted}
-          onClose={() => setAccepted(true)}
+          open={!user?.user?.terms}
         >
           <Box sx={{
             position: 'absolute',
@@ -584,7 +576,6 @@ const Home = () => {
             </div>
             <Button style={{ marginTop: 14, height: '54px', width: '100%', background: "linear-gradient(0.25turn, #6cdd60, #2196b6);", fontSize: 14, padding: 3 }} onClick={() => api.acceptTerms().then((data) => {
               if (data.success) {
-                setAccepted(true)
                 api.getUser().then((data) => {
                   if (data.success) {
                     setUser(data)
