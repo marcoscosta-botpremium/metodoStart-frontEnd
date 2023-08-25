@@ -67,7 +67,8 @@ const Robot = () => {
     loading,
     setLoading,
     visible,
-    setVisible
+    setVisible,
+    botLoaded
   } = useContext(BotContext);
   const { profitTable, updateTable } = useContext(BinaryContext);
   const navigate = useNavigate();
@@ -727,8 +728,9 @@ const Robot = () => {
           </Grid>
         </Card>
       </Stack>
-      <BotModal setOpen={setBotOpen} open={botOpen || !bot} />
-      <LoadingModal open={!balance.balance && !botRunning && !!bot && !isConnected} />
+      <BotModal setOpen={setBotOpen} open={botOpen || !Object.keys(bot).length} />
+      {isConnected ?
+        <LoadingModal open={!botLoaded} /> : null}
     </Layout >
   ) : (
     <Layout title="Operações">

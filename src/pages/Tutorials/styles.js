@@ -3,15 +3,19 @@ import styled, { css } from 'styled-components';
 import { breakPoint, Column, Row, toRem } from '../../styles/global';
 
 export const Container = styled(Row)`
-  height: ${toRem(440)};
+  //height: ${toRem(630)};
   padding: 0 ${toRem(12)};
   width: 100%;
-
-  overflow-y: auto;
+  overflow: hidden;
 
   iframe {
-    width: ${toRem(620)};
-    height: ${toRem(350)};
+    width: 100% !important;
+  }
+
+  .vimeo-player{
+    display:flex;
+    justify-content:center;
+    width:100% !important;
   }
 
   @media (max-width: ${breakPoint.mobileLg}) {
@@ -32,6 +36,18 @@ export const Container = styled(Row)`
       height: ${toRem(250)};
     }
   }
+  @media (min-width: 1420px) {
+    iframe {
+      width: 100%;
+      height: 500px;
+    }
+  }
+  @media (min-width: 1024px) {
+    iframe {
+      width: 100%;
+      //height: 400px;
+    }
+  }
 `;
 
 export const VideoContainer = styled(Column)`
@@ -39,6 +55,10 @@ export const VideoContainer = styled(Column)`
 
   h2 {
     margin: ${toRem(12)} 0;
+  }
+
+  iframe{
+    border-radius:10px;
   }
 
   @media (max-width: ${breakPoint.mobileLg}) {
@@ -50,6 +70,8 @@ export const VideoContainer = styled(Column)`
 
 export const ListTutorials = styled(motion.div)`
   width: 35%;
+  overflow-y: scroll;
+  height: 100%;
 
   @media (max-width: ${breakPoint.mobileLg}) {
     width: 100%;
@@ -69,7 +91,7 @@ export const ItemTutorials = styled(Row)`
   cursor: pointer;
   border-radius: 8px;
 
-  background: ${({ theme }) => theme.colors.backgroundDark};
+  background: #010101;
 
   &:nth-child(1) {
     margin-top: 0;
@@ -94,8 +116,12 @@ export const ItemTutorials = styled(Row)`
     css`
       background: linear-gradient(
         to right,
-        ${({ theme }) => theme.colors.primary},
-        ${({ theme }) => theme.colors.secundary}
+        #0D953C,
+        #1AE363
       );
     `};
+`;
+
+export const Scroll = styled(Row)`
+  overflow-y: auto;
 `;

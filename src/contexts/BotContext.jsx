@@ -80,6 +80,7 @@ const BotProvider = ({ children }) => {
   const [tokenList, setTokenList] = useState(getTokenList());
   const [isConnected, setConnected] = useState(false);
   const [botRunning, setBotRunning] = useState(false);
+  const [botLoaded, setBotLoaded] = useState(true);
   const [activeAccount, setActiveAccount] = useState({});
   const [botStarted, setBotStarted] = useState(false);
   const [xml, setXml] = useState(localStorage.previousStrat);
@@ -200,13 +201,15 @@ const BotProvider = ({ children }) => {
   };
 
   const selectBot = useCallback((bot, exec = false) => {
+    setBotLoaded(false)
     new _Blockly().resetWorkspace();
 
     api
       .getXml(bot?.id)
       .then((xml) => {
         load(xml);
-        toast.success('Robô carregado com sucesso');
+        toast.success('Estratégia carregada com sucesso');
+        setBotLoaded(true)
       })
       .then(() => {
         if (exec) {
@@ -262,7 +265,8 @@ const BotProvider = ({ children }) => {
         loading,
         setLoading,
         visible,
-        setVisible
+        setVisible,
+        botLoaded
       }}
     >
       {children}
