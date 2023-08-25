@@ -12,21 +12,12 @@ import { AuthContext } from '../../contexts/auth';
 
 const Home = () => {
   const { user, setUser } = useContext(AuthContext)
-  const [open, setOpen] = useState(false);
+  const [accepted, setAccepted] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
-    api.getUser().then((res) => {
-      setUser(res.data)
-    }
-    ).catch((err) => {
-      console.log(err)
-    })
-  }, [])
-
-  useEffect(() => {
     if (user) {
-      setOpen(!user?.user?.terms)
+      setAccepted(user?.user?.terms)
     }
   }, [user])
 
@@ -48,8 +39,8 @@ const Home = () => {
         </Container>
 
         <Modal
-          open={open}
-          onClose={() => setOpen(true)}
+          open={!accepted}
+          onClose={() => setAccepted(true)}
         >
           <Box sx={{
             position: 'absolute',
@@ -593,7 +584,7 @@ const Home = () => {
             </div>
             <Button style={{ marginTop: 14, height: '54px', width: '100%', background: "linear-gradient(0.25turn, #6cdd60, #2196b6);", fontSize: 14, padding: 3 }} onClick={() => api.acceptTerms().then((data) => {
               if (data.success) {
-                setOpen(false)
+                setAccepted(true)
                 api.getUser().then((data) => {
                   if (data.success) {
                     setUser(data.user)
