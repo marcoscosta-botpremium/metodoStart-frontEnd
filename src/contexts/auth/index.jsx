@@ -96,6 +96,10 @@ const AuthProvider = ({ children }) => {
     }
   };
 
+  useEffect(() => {
+    getUser()
+  }, [])
+
   return (
     <AuthContext.Provider
       value={{

@@ -11,8 +11,15 @@ import * as api from '../../services/api';
 import { AuthContext } from '../../contexts/auth';
 
 const Home = () => {
-  const { user, setUser } = useContext(AuthContext)
+  const { user } = useContext(AuthContext)
+  const [open, setOpen] = useState(false);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (user) {
+      setOpen(!user?.user?.terms)
+    }
+  }, [])
 
   return (
     <>
@@ -30,9 +37,9 @@ const Home = () => {
             <Title>Atualizações</Title>
           </Card>
         </Container>
-        {console.log(user?.user)}
         <Modal
-          open={!user?.user?.terms}
+          open={open}
+          onClose={() => setOpen(false)}
         >
           <Box sx={{
             position: 'absolute',
@@ -574,15 +581,7 @@ const Home = () => {
               </p>
 
             </div>
-            <Button style={{ marginTop: 14, height: '54px', width: '100%', background: "linear-gradient(0.25turn, #6cdd60, #2196b6);", fontSize: 14, padding: 3 }} onClick={() => api.acceptTerms().then((data) => {
-              if (data.success) {
-                api.getUser().then((data) => {
-                  if (data.success) {
-                    setUser(data)
-                  }
-                })
-              }
-            })}>
+            <Button style={{ marginTop: 14, height: '54px', width: '100%', background: "linear-gradient(0.25turn, #6cdd60, #2196b6);", fontSize: 14, padding: 3 }} onClick={() => api.acceptTerms().then((data) => setOpen(false))}>
               Aceitar
             </Button>
           </Box>
