@@ -11,7 +11,7 @@ import * as api from '../../services/api';
 import { AuthContext } from '../../contexts/auth';
 
 const Home = () => {
-  const { user } = useContext(AuthContext)
+  const { user, setUser } = useContext(AuthContext)
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
 
@@ -582,7 +582,16 @@ const Home = () => {
               </p>
 
             </div>
-            <Button style={{ marginTop: 14, height: '54px', width: '100%', background: "linear-gradient(0.25turn, #6cdd60, #2196b6);", fontSize: 14, padding: 3 }} onClick={() => api.acceptTerms().then((data) => data.success ? setOpen(false) : null)}>
+            <Button style={{ marginTop: 14, height: '54px', width: '100%', background: "linear-gradient(0.25turn, #6cdd60, #2196b6);", fontSize: 14, padding: 3 }} onClick={() => api.acceptTerms().then((data) => {
+              if (data.success) {
+                setOpen(false)
+                api.getUser().then((data) => {
+                  if (data.success) {
+                    setUser(data.user)
+                  }
+                })
+              }
+            })}>
               Aceitar
             </Button>
           </Box>
