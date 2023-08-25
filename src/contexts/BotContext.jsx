@@ -202,7 +202,9 @@ const BotProvider = ({ children }) => {
 
   const selectBot = useCallback((bot, exec = false) => {
     setBotLoaded(false)
-    new _Blockly().resetWorkspace();
+    try {
+      Blockly.mainWorkspace.clear()
+    } catch { }
 
     api
       .getXml(bot?.id)

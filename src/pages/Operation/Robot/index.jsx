@@ -241,7 +241,9 @@ const Robot = () => {
                       }
                     });
                     updateTable();
-                    globalObserver.emit('summary.clear');
+                    try {
+                      globalObserver.emit('summary.clear');
+                    } catch { }
                     setTrades([]);
                   } else {
                     tokenList.map((item, index) => {
@@ -254,7 +256,9 @@ const Robot = () => {
                       }
                     });
                     updateTable();
-                    globalObserver.emit('summary.clear');
+                    try {
+                      globalObserver.emit('summary.clear');
+                    } catch { }
                     setTrades([]);
                   }
                   setRealOpen(false);
