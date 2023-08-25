@@ -587,7 +587,7 @@ const Home = () => {
                 setAccepted(true)
                 api.getUser().then((data) => {
                   if (data.success) {
-                    setUser(data.user)
+                    setUser(data)
                   }
                 })
               }
