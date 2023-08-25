@@ -19,7 +19,7 @@ const Home = () => {
     if (user) {
       setAccepted(user?.user?.terms)
     }
-  }, [user])
+  }, [])
 
   return (
     <>
