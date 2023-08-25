@@ -519,7 +519,7 @@ const Robot = () => {
                   maxWidth: '310px',
                   maxHeight: '310px'
                 }}
-                data={(!!summary?.totalWin && !!summary?.totalLoss) ? [summary?.totalWin, summary?.totalLoss] : [1, 1]} />
+                data={(summary?.totalWin >= 1 || !!summary?.totalLoss >= 1) ? [summary?.totalWin, summary?.totalLoss] : [1, 1]} />
             </Card>
           </Grid>
           <Grid style={{ marginLeft: 'auto', marginRight: 'auto' }} display={{ xs: 'none', md: 'block', lg: 'block' }} item xs={12} md={12} lg={6}>
