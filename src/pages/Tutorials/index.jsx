@@ -70,9 +70,15 @@ const Tutorials = () => {
             style={{
               color: '#00DF00',
               fontWeight: 'bold',
+              width: '100%',
+              textAlign: 'center'
             }}
           >{selectedVideo?.title}</SubTitle>
-          <Text id="describe"></Text>
+          <Text
+            style={{
+              width: '100%',
+              textAlign: 'center'
+            }} id="describe"></Text>
         </VideoContainer>
 
         <ListTutorials>
