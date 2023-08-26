@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 import { breakPoint, Column, Row, toRem } from '../../styles/global';
 
 export const Container = styled(Row)`
-  //height: ${toRem(630)};
+  height: ${toRem(700)};
   padding: 0 ${toRem(12)};
   width: 100%;
   overflow: hidden;
@@ -71,7 +71,7 @@ export const VideoContainer = styled(Column)`
 export const ListTutorials = styled(motion.div)`
   width: 35%;
   overflow-y: scroll;
-  height: 100%;
+  height: ${toRem(560)};
 
   @media (max-width: ${breakPoint.mobileLg}) {
     width: 100%;
