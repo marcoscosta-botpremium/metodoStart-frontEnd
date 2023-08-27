@@ -333,7 +333,7 @@ const Robot = () => {
                       color:
                         Number(summary?.totalProfit) >= 0
                           ? '#14BF44'
-                          : '#c2465b',
+                          : '#FD3531',
                     }}
                   >
                     {Number(summary?.totalProfit) >= 0 ? '+' : '-'} $
@@ -597,7 +597,7 @@ const Robot = () => {
                   sx={{
                     fontSize: 16,
                     fontWeight: 'bold',
-                    color: '#c2465b',
+                    color: '#FD3531',
                   }}
                 >
                   {summary?.totalLoss}
