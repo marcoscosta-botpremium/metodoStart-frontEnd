@@ -52,8 +52,8 @@ export default function TradeTable() {
                 </TableCell>
                 {/* <TableCell align="center">{(localStorage.bootTrue == 'true') ? treatCid(item.contract_id):item.contract_id}</TableCell> */}
                 <TableCell align="center">{item.contract_type}</TableCell>
-                <TableCell sx={{ ...cellStyle, display: { xs: 'none', sm: 'none', md: 'table-cell' } }} align="center">{item.entry_spot}</TableCell>
-                <TableCell sx={{ ...cellStyle, display: { xs: 'none', sm: 'none', md: 'table-cell' } }} align="center">{(item.profit) ? item.current_spot : null}</TableCell>
+                <TableCell sx={{ ...cellStyle, display: { xs: 'none', sm: 'none', md: 'table-cell' } }} align="center">{item.entry_tick}</TableCell>
+                <TableCell sx={{ ...cellStyle, display: { xs: 'none', sm: 'none', md: 'table-cell' } }} align="center">{(item.profit) ? item.exit_tick : null}</TableCell>
                 <TableCell align="center">{item.buy_price}</TableCell>
                 <TableCell style={{ color: (Number(item.profit) >= 0) ? '#02BF44' : '#FF3531' }} align="center">{(item.profit) ? '$' + (Number(item.profit)).toFixed(2) : null}</TableCell>
                 {/* <TableCell align="center">{item.profit}</TableCell> */}
