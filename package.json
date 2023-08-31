@@ -36,6 +36,7 @@
     "jquery": "^3.6.1",
     "js-cookie": "^3.0.1",
     "js-interpreter": "^3.0.1",
+    "logrocket": "^5.0.1",
     "material-ui-toggle-icon": "^1.1.2",
     "moment": "^2.29.4",
     "nprogress": "^0.2.0",

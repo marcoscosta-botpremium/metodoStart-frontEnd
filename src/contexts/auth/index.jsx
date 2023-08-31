@@ -1,6 +1,7 @@
 import { createContext, useContext, useState, useEffect } from 'react';
 import { toast } from 'react-hot-toast';
 import * as api from '../../services/api';
+import LogRocket from 'logrocket';
 
 const AuthContext = createContext({});
 
@@ -8,7 +9,7 @@ const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(localStorage.getItem('accessToken') ? true : false);
   const [user, setUser] = useState(null);
 
-  const getUser = async (navigate) => {
+  const getUser = async () => {
     try {
       const response = await api.getUser();
 
@@ -17,7 +18,10 @@ const AuthProvider = ({ children }) => {
         localStorage.setItem('userInfo', JSON.stringify(response?.user))
         localStorage.setItem('getUser', JSON.stringify(response));
 
-        navigate('/home');
+        LogRocket.identify('THE_USER_ID_IN_YOUR_APP', {
+          name: response?.user?.name,
+          email: response?.user?.email,
+        });
       } else {
         toast.error('Usuário não encontrado', {
           position: 'top right',
@@ -30,14 +34,14 @@ const AuthProvider = ({ children }) => {
     }
   };
 
-  const login = async (user, navigate) => {
+  const login = async (user) => {
     try {
       const response = await api.login(user);
 
       if (response.success) {
         localStorage.setItem('accessToken', response.token);
         setIsAuthenticated(true);
-        getUser(navigate);
+        getUser();
       } else {
         toast.error(response.message, {
           position: 'top right',
