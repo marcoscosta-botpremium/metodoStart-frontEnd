@@ -72,8 +72,8 @@ const Login = ({ setActiveContent }) => {
       </Button>
       <div style={{
         textAlign: 'center',
-        paddingLeft: '12.5%',
-        paddingRight: '12.5%',
+        paddingLeft: '2%',
+        paddingRight: '2%',
         fontSize: 8,
         position: 'absolute',
         bottom: 5,
