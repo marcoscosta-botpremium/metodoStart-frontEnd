@@ -18,9 +18,12 @@ export const reloadAxios = () => {
 
 //Novos
 
-export const getTutorials = async (controller) => {
+export const getTutorials = async (controller, page = 1) => {
   const res = await axios.get('/api/publication/', {
     signal: controller.signal,
+    params: {
+      page: page,
+    }
   });
   return res ? res.data : null;
 };

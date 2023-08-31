@@ -18,6 +18,8 @@ const Tutorials = () => {
   const { id } = useParams();
   const [tutorials, setTutorials] = useState([]);
   const [selectedVideo, setSelectedVideo] = useState({});
+  const [page, setPage] = useState(1);
+  const tutorialContainerRef = React.useRef(null);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -25,8 +27,6 @@ const Tutorials = () => {
     const getTutorials = async () => {
       try {
         const response = await api.getTutorials(controller);
-
-        response.publications.reverse();
 
         if (id) {
           setSelectedVideo(response?.publications[1]);
@@ -45,6 +45,15 @@ const Tutorials = () => {
       controller.abort();
     };
   }, []);
+
+  const handleScroll = () => {
+    const controller = new AbortController();
+    api.getTutorials(controller, page + 1).then(res => {
+      let moreTutorials = res.publications;
+      setTutorials(t => [...t, ...moreTutorials])
+    })
+    setPage(pg => pg + 1)
+  };
 
   useEffect(() => {
     if (selectedVideo) {
@@ -81,11 +90,11 @@ const Tutorials = () => {
             }} id="describe"></Text>
         </VideoContainer>
 
-        <ListTutorials>
+        <ListTutorials ref={tutorialContainerRef}>
           {tutorials.map((item, index) => (
             <ItemTutorials
               key={index}
-              active={item.link === selectedVideo?.link}
+              active={item.id === selectedVideo?.id}
               variants={variants.itemOpacity}
               onClick={() => setSelectedVideo(item)}
               whileTap={{
@@ -95,10 +104,23 @@ const Tutorials = () => {
               <Img src={imgPlay} alt="player" />
 
               <Text>
-                Aula {index + 1} - {item.title}
+                Aula {item?.number} - {item.title}
               </Text>
             </ItemTutorials>
           ))}
+          {/* <ItemTutorials
+            key={1000000}
+            active={true}
+            variants={variants.itemOpacity}
+            onClick={handleScroll}
+            whileTap={{
+              scale: 0.9,
+            }}
+          >
+            <Text>
+              P
+            </Text>
+          </ItemTutorials> */}
         </ListTutorials>
       </Container>
     </Layout >
