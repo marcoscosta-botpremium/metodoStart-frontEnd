@@ -25,6 +25,7 @@ import { saveBeforeUnload } from '../../../utils/binary';
 import TradeTable from '../../../components/TradeTable';
 import { LoadingModal, BotModal, Sure } from '../../../components';
 import { BinaryContext } from '../../../contexts/BinaryContext';
+import { getTokenList } from "../../../services/storage"
 import { BotContext } from '../../../contexts/BotContext';
 import * as api from '../../../services/api';
 import { isRealAccount } from '../../../services/app';
@@ -194,74 +195,78 @@ const Robot = () => {
                 open={virtualOpen}
                 setOpen={setVirtualOpen}
                 onAccept={() => {
-                  if (localStorage.bootTrue === 'true') {
-                    // eslint-disable-next-line array-callback-return
-                    tokenList.map((item, index) => {
-                      if (!item.loginInfo.is_virtual) {
-                        if (index === 1) {
-                          setTokenList(tokenList.reverse());
-                        }
-                        localStorage.setItem('activeToken', item.token);
-                        setActiveAccount(item);
-                      }
-                    });
-                    updateTable();
-                    globalObserver.emit('summary.clear');
-                    setTrades([]);
+                  let tokenList = getTokenList()
+                  if (localStorage.bootTrue == 'true') {
+                    let tokns = tokenList.filter(item => item.loginInfo.currency == 'USD').sort((a, b) => a.loginInfo.is_virtual - b.loginInfo.is_virtual)
+                    let item = tokns.filter(item => !item.loginInfo.is_virtual)[0]
+                    setTokenList(tokns)
+                    localStorage.setItem('activeToken', item.token)
+                    setActiveAccount(item)
+
+                    updateTable()
+                    try {
+                      globalObserver.emit('summary.clear')
+                    } catch {
+                      console.log('error')
+                    }
+                    setTrades([])
+                    blockly.stop()
                   } else {
-                    // eslint-disable-next-line array-callback-return
-                    tokenList.map((item, index) => {
-                      if (item.loginInfo.is_virtual) {
-                        if (index === 1) {
-                          setTokenList(tokenList.reverse());
-                        }
-                        localStorage.setItem('activeToken', item.token);
-                        setActiveAccount(item);
-                      }
-                    });
-                    updateTable();
-                    globalObserver.emit('summary.clear');
-                    setTrades([]);
+                    let tokns = tokenList.filter(item => item.loginInfo.currency == 'USD').sort((a, b) => b.loginInfo.is_virtual - a.loginInfo.is_virtual)
+                    let item = tokns.filter(item => item.loginInfo.is_virtual)[0]
+                    setTokenList(tokns)
+                    localStorage.setItem('activeToken', item.token)
+                    setActiveAccount(item)
+
+                    updateTable()
+                    try {
+                      globalObserver.emit('summary.clear')
+                    } catch {
+                      console.log('error')
+                    }
+                    setTrades([])
+                    blockly.stop()
                   }
-                  setVirtualOpen(false);
+                  setVirtualOpen(false)
                 }}
               />
               <Sure
                 open={realOpen}
                 setOpen={setRealOpen}
                 onAccept={() => {
+                  let tokenList = getTokenList()
                   if (localStorage.bootTrue == 'true') {
-                    tokenList.map((item, index) => {
-                      if (item.loginInfo.is_virtual) {
-                        if (index == 1) {
-                          setTokenList(tokenList.reverse());
-                        }
-                        localStorage.setItem('activeToken', item.token);
-                        setActiveAccount(item);
-                      }
-                    });
-                    updateTable();
+                    let tokns = tokenList.filter(item => item.loginInfo.currency == 'USD').sort((a, b) => b.loginInfo.is_virtual - a.loginInfo.is_virtual)
+                    let item = tokns.filter(item => item.loginInfo.is_virtual)[0]
+                    setTokenList(tokns)
+                    localStorage.setItem('activeToken', item.token)
+                    setActiveAccount(item)
+
+                    updateTable()
                     try {
-                      globalObserver.emit('summary.clear');
-                    } catch { }
-                    setTrades([]);
+                      globalObserver.emit('summary.clear')
+                    } catch {
+                      console.log('error')
+                    }
+                    setTrades([])
+                    blockly.stop()
                   } else {
-                    tokenList.map((item, index) => {
-                      if (!item.loginInfo.is_virtual) {
-                        if (index == 1) {
-                          setTokenList(tokenList.reverse());
-                        }
-                        localStorage.setItem('activeToken', item.token);
-                        setActiveAccount(item);
-                      }
-                    });
-                    updateTable();
+                    let tokns = tokenList.filter(item => item.loginInfo.currency == 'USD').sort((a, b) => a.loginInfo.is_virtual - b.loginInfo.is_virtual)
+                    let item = tokns.filter(item => !item.loginInfo.is_virtual)[0]
+                    setTokenList(tokns)
+                    localStorage.setItem('activeToken', item.token)
+                    setActiveAccount(item)
+
+                    updateTable()
                     try {
-                      globalObserver.emit('summary.clear');
-                    } catch { }
-                    setTrades([]);
+                      globalObserver.emit('summary.clear')
+                    } catch {
+                      console.log('error')
+                    }
+                    setTrades([])
+                    blockly.stop()
                   }
-                  setRealOpen(false);
+                  setRealOpen(false)
                 }}
               />
               <Card
