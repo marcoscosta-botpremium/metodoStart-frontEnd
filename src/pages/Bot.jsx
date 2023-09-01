@@ -69,36 +69,41 @@ const Bot = () => {
       setUser(data);
       localStorage.setItem('userInfo', JSON.stringify(data?.user));
     });
+    makeSummary()
   }, []);
 
-  useEffect(() => {
-    let totalQuantity = 0;
-    let onlyProfit = 0;
-    let profit = 0;
-    let quantity = 0;
-    let gains = 0;
-    let losses = 0;
-    trades.map((item) => {
+  const makeSummary = () => {
+    let totalQuantity = 0
+    let onlyProfit = 0
+    let profit = 0
+    let quantity = 0
+    let gains = 0
+    let losses = 0
+    trades.map(item => {
       if (item.profit) {
-        profit += Number(item.profit);
-        quantity += Number(item.buy_price);
-        totalQuantity += quantity;
+        profit += Number(item.profit)
+        quantity += Number(item.buy_price)
+        totalQuantity += quantity
         if (item.profit > 0) {
-          onlyProfit += Number(item.profit);
-          gains += 1;
+          onlyProfit += Number(item.profit)
+          gains += 1
         } else {
-          losses += 1;
+          losses += 1
         }
       }
-    });
+    })
     setSummary({
       totalProfit: profit,
       total: trades.length,
       totalWin: gains,
       totalLoss: losses,
       totalQuantity: totalQuantity,
-      onlyProfit: onlyProfit,
-    });
+      onlyProfit: onlyProfit
+    })
+  }
+
+  useEffect(() => {
+    makeSummary()
   }, [trades]);
 
   return (
