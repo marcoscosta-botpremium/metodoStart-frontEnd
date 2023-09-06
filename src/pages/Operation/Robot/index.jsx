@@ -736,7 +736,7 @@ const Robot = () => {
       </Stack>
       <BotModal setOpen={setBotOpen} open={botOpen || !Object.keys(bot).length} />
       {isConnected ?
-        <LoadingModal open={!botLoaded} /> : null}
+        <LoadingModal open={!botLoaded || loading} /> : null}
     </Layout >
   ) : (
     <Layout title="Operações">
