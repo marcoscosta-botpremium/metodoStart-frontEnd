@@ -8,6 +8,7 @@ import * as api from '../../services/api';
 import './index.css'
 import { DialogTitle } from '@material-ui/core';
 import { Button } from '@mui/material';
+import { BotContext } from '../../contexts/BotContext';
 
 const responsive = {
   superLargeDesktop: {
@@ -34,6 +35,7 @@ const responsive = {
 };
 
 export default function BotModal(props) {
+  const { selectBot } = React.useContext(BotContext)
   const { open, setOpen, items } = props
 
   const handleClose = () => {

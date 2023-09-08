@@ -19,7 +19,7 @@ const BinaryProvider = ({ children }) => {
     if (lastMessage !== null) {
       const data = JSON.parse(lastMessage.data)
 
-      if(data.msg_type == 'authorize'){
+      if (data.msg_type == 'authorize') {
         sendMessage(JSON.stringify({
           "profit_table": 1,
           "description": 0,
@@ -28,7 +28,6 @@ const BinaryProvider = ({ children }) => {
         }))
       }
       if (data.msg_type === "profit_table") {
-        console.log(data)
         setTable(data.profit_table?.transactions)
       }
     }

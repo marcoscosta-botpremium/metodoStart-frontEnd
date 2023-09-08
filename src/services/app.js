@@ -44,7 +44,7 @@ export const getDefaultEndpoint = () => ({
   appId: appid,
 });
 
-export const getLanguage = () => 'pt-br';
+export const getLanguage = () => 'PT';
 export const getOAuthURL = () =>
   `https://${generateOAuthDomain()}/oauth2/authorize?app_id=${appid}&l=${getLanguage().toUpperCase()}&brand=deriv`;
 
