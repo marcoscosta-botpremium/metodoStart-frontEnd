@@ -58,6 +58,7 @@ const options = {
   language: getLanguage().toUpperCase(),
   appId: appid,
   brand: 'binary',
+  balance: 1
 };
 export const generateLiveApiInstance = () => new LiveApi(options);
 
