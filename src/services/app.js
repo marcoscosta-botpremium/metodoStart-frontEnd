@@ -1,50 +1,50 @@
-import { LiveApi } from 'binary-live-api';
+import { LiveApi } from "binary-live-api";
 import {
   addToken,
   get as getStorage,
   getTokenList,
   removeToken,
   set as setStorage,
-} from './storage';
+} from "./storage";
 
-export const appid = '35973';
+export const appid = "35973";
 
 export const AppConstants = Object.freeze({
-  STORAGE_ACTIVE_TOKEN: 'activeToken',
+  STORAGE_ACTIVE_TOKEN: "activeToken",
 });
 
-export const CRYPTO_CURRENCIES = ['BTC', 'ETH', 'LTC', 'BCH'];
+export const CRYPTO_CURRENCIES = ["BTC", "ETH", "LTC", "BCH"];
 
 export const isRealAccount = () => {
-  const accountList = JSON.parse(getStorage('tokenList') || '{}');
+  const accountList = JSON.parse(getStorage("tokenList") || "{}");
   const activeToken = getStorage(AppConstants.STORAGE_ACTIVE_TOKEN) || [];
   let activeAccount = null;
   let isReal = false;
   try {
     activeAccount = accountList.filter(
-      (account) => account.token === activeToken
+      (account) => account.token === activeToken,
     );
-    isReal = !activeAccount[0].accountName.startsWith('VRT');
-  } catch (e) { } // eslint-disable-line no-empty
+    isReal = !activeAccount[0].accountName.startsWith("VRT");
+  } catch (e) {} // eslint-disable-line no-empty
   return isReal;
 };
 
 export const getExtension = () => {
   const host = document.location.hostname;
-  const extension = host.split('.').slice(-1)[0];
-  return host !== extension ? extension : '';
+  const extension = host.split(".").slice(-1)[0];
+  return host !== extension ? extension : "";
 };
 
 const generateOAuthDomain = () => {
-  return 'oauth.binary.com';
+  return "oauth.binary.com";
 };
 
 export const getDefaultEndpoint = () => ({
-  url: isRealAccount() ? 'green.binaryws.com' : 'blue.binaryws.com',
+  url: isRealAccount() ? "ws.derivws.com" : "ws.derivws.com",
   appId: appid,
 });
 
-export const getLanguage = () => 'PT';
+export const getLanguage = () => "PT";
 export const getOAuthURL = () =>
   `https://${generateOAuthDomain()}/oauth2/authorize?app_id=${appid}&l=${getLanguage().toUpperCase()}&brand=deriv`;
 
@@ -57,8 +57,8 @@ const options = {
   apiUrl: getWebSocketURL(),
   language: getLanguage().toUpperCase(),
   appId: appid,
-  brand: 'binary',
-  balance: 1
+  brand: "binary",
+  balance: 1,
 };
 export const generateLiveApiInstance = () => new LiveApi(options);
 
@@ -66,15 +66,15 @@ const hasOwnProperty = (obj, prop) =>
   Object.prototype.hasOwnProperty.call(obj, prop);
 
 export const isVirtual = (tokenInfo) =>
-  hasOwnProperty(tokenInfo, 'loginInfo') && tokenInfo.loginInfo.is_virtual;
+  hasOwnProperty(tokenInfo, "loginInfo") && tokenInfo.loginInfo.is_virtual;
 
 export const parseQueryString = () => {
-  if (typeof window === 'undefined') {
+  if (typeof window === "undefined") {
     return {};
   }
   const str = window.location.search;
   const objURL = {};
-  str.replace(new RegExp('([^?=&]+)(=([^&]*))?', 'g'), (a0, a1, a2, a3) => {
+  str.replace(new RegExp("([^?=&]+)(=([^&]*))?", "g"), (a0, a1, a2, a3) => {
     objURL[a1] = a3;
   });
   return objURL;
@@ -86,7 +86,7 @@ const queryToObjectArray = (queryStr) => {
     if (!/\d$/.test(o)) return;
     const index = parseInt(o.slice(-1));
     let key = o.slice(0, -1);
-    key = key === 'acct' ? 'accountName' : key; // Make it consistent with storageManage naming
+    key = key === "acct" ? "accountName" : key; // Make it consistent with storageManage naming
     if (index <= tokens.length) {
       tokens[index - 1][key] = queryStr[o];
     } else {
@@ -107,7 +107,7 @@ export const oauthLogin = (done = () => 0) => {
       if (accounts.length) {
         setStorage(AppConstants.STORAGE_ACTIVE_TOKEN, accounts[0].token);
       }
-      document.location = '/robot';
+      document.location = "/robot";
     });
   } else {
     done();
@@ -126,7 +126,7 @@ export async function addTokenIfValid(token, tokenObjectList) {
       token,
       authorize,
       !!hasRealityCheck,
-      ['iom', 'malta'].includes(lcName) && authorize.country === 'gb'
+      ["iom", "malta"].includes(lcName) && authorize.country === "gb",
     );
 
     const { account_list: accountList } = authorize;
@@ -134,7 +134,7 @@ export async function addTokenIfValid(token, tokenObjectList) {
       tokenObjectList.forEach((tokenObject) => {
         if (tokenObject.token !== token) {
           const account = accountList.filter(
-            (o) => o.loginid === tokenObject.accountName
+            (o) => o.loginid === tokenObject.accountName,
           );
           if (account.length) {
             addToken(tokenObject.token, account[0], false, false);
@@ -151,7 +151,7 @@ export async function addTokenIfValid(token, tokenObjectList) {
 
 export const addBalanceForToken = (token, api) => {
   api.authorize(token).then(() => {
-    api.send({ forget_all: 'balance' }).then(() => {
+    api.send({ forget_all: "balance" }).then(() => {
       api.subscribeToBalance();
     });
   });
